@@ -1,5 +1,6 @@
 # TeleLib
 
+[![Node.js Package](https://github.com/reloadlife/TeleLib/actions/workflows/npm-publish.yml/badge.svg)](https://github.com/reloadlife/TeleLib/actions/workflows/npm-publish.yml)
 a node js Telegram Wrapper written in TypeScript.
 
 ## installation
