@@ -1,12 +1,4 @@
-import Bot from '../src/bot'
-
-import {
-	InlineKeyboardMarkup,
-	Message,
-	ReplyMarkup,
-	InlineKeyboardButton,
-	InputFile
-} from '../src/telegram/types'
+import { Bot, types } from '../index'
 
 const _bot = new Bot({
 	telegram: {
@@ -18,17 +10,17 @@ const _bot = new Bot({
 
 _bot.client.on(
 	'message',
-	(msg: Message) => {
+	(msg: types.Message) => {
 
 		if (!msg.chat) {
 			return msg.reply('no chat')
 		}
 
-		const key = new ReplyMarkup(
-			new InlineKeyboardMarkup({
+		const key = new types.ReplyMarkup(
+			new types.InlineKeyboardMarkup({
 				inline_keyboard: [
 					[
-						new InlineKeyboardButton({
+						new types.InlineKeyboardButton({
 							text: 'hello',
 							callback_data: 'hi'
 						})
@@ -37,9 +29,9 @@ _bot.client.on(
 			})
 		)
 
-		_bot.client.methods.sendPhoto(msg.chat.id, new InputFile('./i.png', 'i.png'))
+		_bot.client.methods.sendPhoto(msg.chat.id, new types.InputFile('./i.png', 'i.png'))
 
-		_bot.client.methods.sendPhoto(msg.chat.id, new InputFile('./i.png', 'i.png'), 'test', undefined, undefined, undefined, key)
+		_bot.client.methods.sendPhoto(msg.chat.id, new types.InputFile('./i.png', 'i.png'), 'test', undefined, undefined, undefined, key)
 
 		if (msg.text) {
 			return msg.reply(msg.text)

@@ -22,7 +22,7 @@ install the package using npm or yarn
 import the package:
 
 ```typescript
-import Bot from '@telelib/telelib'
+import { Bot } from '@telelib/telelib'
 ```
 
 create an instance:
@@ -39,7 +39,7 @@ const TelegramBot = new Bot({
 since it's typescript, import Types as well
 
 ```typescript
-import { Message } from '../src/telegram/types'
+import { types } from '@telelib/telelib'
 ```
 
 - replace `[TOKEN]` with your telegram bot token
@@ -49,7 +49,7 @@ create a listener on 'Message' Type:
 ```typescript
 TelegramBot.client.on(
  'message',
- (msg: Message) => {
+ (msg: types.Message) => {
   if (msg.text) {
    return msg.reply(`your message was:\n${msg.text}`)
   }
