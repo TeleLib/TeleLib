@@ -6,7 +6,8 @@
         "lint": "eslint . --ext .ts",
         "clean": "rimraf dist",
         "tscBuild": "tsc --build",
-        "build": "npm run clean && npm run tscBuild"
+        "build": "npm run clean && npm run tscBuild",
+        "test": "echo 'Test !'"
     },
     "publishConfig": {
         "access": "public"
