@@ -1,4 +1,4 @@
-import { Bot, types } from '../index'
+import { Bot, types } from '../src/index'
 
 const _bot = new Bot({
 	telegram: {

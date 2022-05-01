@@ -10,5 +10,6 @@
 		"sourceMap": true,
 		"outDir": "dist"
 	},
-	"lib": ["es2018"]
+	"lib": ["es2018"],
+	"exclude": ["node_modules", "examples"],
 }
