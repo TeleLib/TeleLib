@@ -1,7 +1,9 @@
 {
     "name": "@telelib/telelib",
-    "version": "6.0.2",
+    "version": "6.0.3",
     "description": "A NodeJS Telegram API Wrapper.",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "lint": "eslint . --ext .ts",
         "clean": "rimraf dist",
