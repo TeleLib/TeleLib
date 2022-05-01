@@ -1,6 +1,6 @@
 {
     "name": "@telelib/telelib",
-    "version": "6.0.0",
+    "version": "6.0.2",
     "description": "A NodeJS Telegram API Wrapper.",
     "scripts": {
         "lint": "eslint . --ext .ts",
@@ -9,13 +9,6 @@
         "build": "npm run clean && npm run tscBuild",
         "test": "echo 'Test !'"
     },
-    "publishConfig": {
-        "access": "public"
-    },
-    "files": [
-        "./dist",
-        "./src"
-    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/reloadlife/telelib"
