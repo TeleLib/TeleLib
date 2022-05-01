@@ -165,12 +165,76 @@ export declare type ChatAction = 'typing' | 'upload_photo' | 'record_video' | 'u
 export class Update extends _Update { }
 
 export class Message extends _Message {
+	type() {
+		if (this.text) return 'text'
+		if (this.photo) return 'photo'
+		if (this.video) return 'video'
+		if (this.animation) return 'animation'
+		if (this.audio) return 'audio'
+		if (this.document) return 'document'
+		if (this.sticker) return 'sticker'
+		if (this.video) return 'video'
+		if (this.video_note) return 'video_note'
+		if (this.voice) return 'voice'
+		if (this.contact) return 'contact'
+		if (this.dice) return 'dice'
+		if (this.game) return 'game'
+		if (this.poll) return 'poll'
+		if (this.venue) return 'venue'
+		if (this.location) return 'location'
+		if (this.invoice) return 'invoice'
+		if (this.successful_payment) return 'successful_payment'
+		if (this.connected_website) return 'connected_website'
+		if (this.pinned_message) return 'service_message'
+		if (this.passport_data) return 'passport_data'
+		if (this.proximity_alert_triggered) return 'proximity_alert_triggered'
+
+		if (this.new_chat_members) return 'service_message'
+		if (this.left_chat_member) return 'service_message'
+		if (this.new_chat_title) return 'service_message'
+		if (this.new_chat_photo) return 'service_message'
+		if (this.delete_chat_photo) return 'service_message'
+		if (this.supergroup_chat_created) return 'service_message'
+		if (this.channel_chat_created) return 'service_message'
+		if (this.message_auto_delete_timer_changed) return 'service_message'
+		if (this.migrate_to_chat_id) return 'service_message'
+		if (this.migrate_from_chat_id) return 'service_message'
+		if (this.pinned_message) return 'service_message'
+		if (this.web_app_data) return 'web_app_data'
+
+		return 'unknown'
+	}
+
 	reply(text: string, reply_markup?: ReplyMarkup, parse_mode?: ParseMode) : never | Promise<Message> {
 		if (!this.chat) {
 			throw Error('Can\'t reply on a message while there\'s not message.')
 		}
 
 		return this.methods.sendMessage(this.chat.id, text, this.message_id, parse_mode, reply_markup)
+	}
+
+	onMatch(match: RegExp, next: (matcher?: any | any[]) => Bool): Bool {
+		let text!: string
+
+		if (this.text) {
+			text = this.text
+		}
+
+		if (this.caption) {
+			text = `$$<${this.type()}$$type>:type{${this.caption}}`
+		}
+
+		if (typeof text === 'undefined') {
+			text = `$$<${this.type()}$$type>`
+		}
+
+		const matcher = text.match(match)
+
+		if (matcher) {
+			return next(matcher)
+		}
+
+		return false
 	}
 
 }

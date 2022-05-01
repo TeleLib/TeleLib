@@ -12,6 +12,16 @@ _bot.client.on(
 	'message',
 	(msg: types.Message) => {
 
+		if (msg.onMatch(/\/start/, () => {
+			return msg.reply('hey there') as unknown as boolean
+		})) return true
+
+		if (msg.onMatch(/\$\$<(photo)\$\$type>/, () => {
+			return msg.reply('photo there') as unknown as boolean
+		})) return true
+
+		// see the function to see how it works.
+
 		if (!msg.chat) {
 			return msg.reply('no chat')
 		}
