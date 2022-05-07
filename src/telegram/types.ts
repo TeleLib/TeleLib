@@ -761,6 +761,15 @@ export class GameHighScore extends Type {
 	}
 }
 
+
+export class ArrayObject extends Type {
+	defaultObject!: any
+	constructor(res: any) {
+		super()
+		this.defaultObject = res
+	}
+}
+
 export declare type response<T> = {
 	ok: boolean
 	result: T
