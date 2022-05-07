@@ -32,6 +32,7 @@ declare type config = {
 		update_pull_limit?: Num,
 	}
 	debug?: boolean,
+	error_handle?: boolean,
 }
 
 export default class Bot {
@@ -80,6 +81,13 @@ export default class Bot {
 			Logger.debug('update_pull_limit = 100')
 
 			config.telegram.update_pull_limit = 100
+		}
+
+		if (!config.error_handle) {
+			Logger.debug('no error_handle is provided. Using the default value')
+			Logger.debug('error_handle = true')
+
+			config.error_handle = true
 		}
 
 		this.config = config

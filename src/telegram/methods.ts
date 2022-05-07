@@ -1,4 +1,4 @@
-import { AxiosInstance } from 'axios'
+import { AxiosInstance, AxiosResponse } from 'axios'
 import * as type from './types'
 import Logger from '../logger'
 import { serialize } from './object-to-form-data'
@@ -11,13 +11,7 @@ class Methods {
 		this.http_client = AxiosClient
 	}
 
-	/** default call method
-	 *
-	 * @param method {type.MethodNames}
-	 * @param data {type.data}- data for the method
-	 * @returns {Promise<type.response<any>>}
-	 */
-	call = async (method: type.MethodNames, data: type.data = {}): Promise<type.response<any>> => {
+	ready_data = (data: type.data = {}) => {
 		let has_file = false
 
 		for (const key in data) {
@@ -34,54 +28,86 @@ class Methods {
 			}
 		}
 
-		// this.buildFormData(form_data, data)
+		return {data, has_file}
+	}
 
-		try {
-			let result
-			if (has_file) {
-				const form_data = serialize(data)
-				result = await this
-					.http_client
-					.post(
-						method,
-						form_data,
-						{
-							headers: {
-								...form_data.getHeaders(),
-								'Content-Type': 'application/x-www-form-urlencoded'
-							},
-						}
-					)
-			}
+	sync_call = (method: type.MethodNames, _data: type.data = {}): Promise<AxiosResponse<type.response<any>>> => {
+		const { data, has_file } = this.ready_data(_data)
 
-			if (!has_file) {
-				result = await this
-					.http_client
-					.post(
-						method,
-						data,
-						{
-							headers: {
-								'Content-Type': 'application/json'
-							},
-						}
-					)
-			}
-
-			if (!result) {
-				throw Error(
-					'Can\'t call method, no result from request which is not expected since has_file can either be true or false.'
-					+ '\nThe only way you can get to this error is living in the feature! =)'
+		let result
+		if (has_file) {
+			const form_data = serialize(data)
+			result = this
+				.http_client
+				.post(
+					method,
+					form_data,
+					{
+						headers: {
+							...form_data.getHeaders(),
+							'Content-Type': 'application/x-www-form-urlencoded'
+						},
+					}
 				)
-			}
-
-			Logger.tag(['[Telegram]', `${method}`, '[Sent]']).debug(`${method}`, data, result.data)
-			return result.data
-		} catch (e) {
-			Logger.tag(['[Telegram]', `${method}`]).debug(`${e}`, data)
 		}
 
-		return { ok: false, result: { error_code: -1, description: 'Unknown error' } }
+		if (!has_file) {
+			result = this
+				.http_client
+				.post(
+					method,
+					data,
+					{
+						headers: {
+							'Content-Type': 'application/json'
+						},
+					}
+				)
+		}
+
+		if (!result) {
+			throw Error(
+				'Can\'t call method, no result from request which is not expected since has_file can either be true or false.'
+				+ '\nThe only way you can get to this error is living in the feature! =)'
+			)
+		}
+
+		Logger.tag(['[Telegram]', `${method}`, '[Sent]']).debug(`${method}`, data, 'Async call is sent.')
+		return result
+	}
+
+	async_call = async (method: type.MethodNames, _data: type.data = {}): Promise<type.response<any>> => {
+		const result = await this.sync_call(method, _data)
+
+		if (!result) {
+			throw Error(
+				'Can\'t call method, no result from request which is not expected since has_file can either be true or false.'
+				+ '\nThe only way you can get to this error is living in the feature! =)'
+			)
+		}
+
+		Logger.tag(['[Telegram]', `${method}`, '[Received]']).debug(`${method}`, result.data)
+		return result.data
+	}
+
+	/** default call method
+	 *
+	 * @param method {type.MethodNames}
+	 * @param _data {type.data} - data for the method
+	 * @returns {Promise<type.response<any>>}
+	 */
+	call = async (method: type.MethodNames, _data: type.data = {}): Promise<type.response<any>> => {
+		if (globalThis.config.error_handle) {
+			try {
+				return await this.async_call(method, _data)
+			} catch (e) {
+				Logger.tag(['[Telegram]', `${method}`]).debug(`${e}`, _data)
+			}
+
+			return { ok: false, result: { error_code: -1, description: 'Unknown error' } }
+		}
+
+		return await this.async_call(method, _data)
 	}
 
 	/** GetUpdates
