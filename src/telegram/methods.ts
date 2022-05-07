@@ -231,7 +231,7 @@ class Methods {
 	 * @param text {type.String} - Text of the message to be sent
 	 * @param reply_to_message_id? {type.MessageId} - If the message is a reply, ID of the original message
 	 * @param parse_mode? {type.ParseMode} - Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-	 * @param entities? {type.MessageEntity[]} - List of special entities that appear in message text,
+	 * @param entities? {type.MessageEntity[]|type.ArrayObject} - List of special entities that appear in message text,
 	 * @param disable_web_page_preview? {type.Boolean} - Disables link previews for links in this message
 	 * @param disable_notification? {type.Boolean} - Sends the message silently. Users will receive a notification with no sound.
 	 * @param protect_content? {type.Boolean} - If set to True, the message will be sent even if the specified replied-to message is not found
@@ -245,7 +245,7 @@ class Methods {
 		reply_to_message_id?: type.MessageId,
 		parse_mode?: type.ParseMode,
 		reply_markup?: type.ReplyMarkup,
-		entities?: type.MessageEntity[],
+		entities?: type.MessageEntity[]|type.ArrayObject,
 		disable_web_page_preview?: type.Bool,
 		disable_notification?: type.Bool,
 		protect_content?: type.Bool,
@@ -304,7 +304,7 @@ class Methods {
 	 * @param message_id {type.MessageId} - Unique message identifier
 	 * @param caption? {type.String} - Caption of the message to be sent, 0-1024 characters
 	 * @param parse_mode? {type.ParseMode} - Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-	 * @param caption_entities? {type.MessageEntity[]} - List of special entities that appear in message text,
+	 * @param caption_entities? {type.MessageEntity[]|type.ArrayObject} - List of special entities that appear in message text,
 	 * @param reply_to_message_id? {type.MessageId} - If the message is a reply, ID of the original message
 	 * @param protect_content? {type.Boolean} - If set to True, the message will be sent even if the specified replied-to message is not found
 	 * @param disable_notification? {type.Boolean} - Sends the message silently. Users will receive a notification with no sound.
@@ -320,7 +320,7 @@ class Methods {
 		allow_sending_without_reply?: type.Bool,
 		caption?: type.String,
 		parse_mode?: type.ParseMode,
-		caption_entities?: type.MessageEntity[],
+		caption_entities?: type.MessageEntity[]|type.ArrayObject,
 		protect_content?: type.Bool,
 		disable_notification?: type.Bool,
 		reply_markup?: type.ReplyMarkup,
@@ -348,7 +348,7 @@ class Methods {
 	 * @param photo {type.FileId | type.InputFile | type.Str} - Photo to send.
 	 * @param caption? {type.String} - Caption of the message to be sent, 0-1024 characters
 	 * @param parse_mode? {type.ParseMode} - Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-	 * @param caption_entities? {type.MessageEntity[]} - List of special entities that appear in message text,
+	 * @param caption_entities? {type.MessageEntity[]|type.ArrayObject} - List of special entities that appear in message text,
 	 * @param reply_to_message_id? {type.MessageId} - If the message is a reply, ID of the original message
 	 * @param protect_content? {type.Boolean} - If set to True, the message will be sent even if the specified replied-to message is not found
 	 * @param disable_notification? {type.Boolean} - Sends the message silently. Users will receive a notification with no sound.
@@ -365,7 +365,7 @@ class Methods {
 		disable_notification?: type.Bool,
 		reply_markup?: type.ReplyMarkup,
 		allow_sending_without_reply?: type.Bool,
-		caption_entities?: type.MessageEntity[],
+		caption_entities?: type.MessageEntity[]|type.ArrayObject,
 		protect_content?: type.Bool,
 	): Promise<type.Message> => this.call('sendPhoto', {
 		chat_id,
@@ -394,7 +394,7 @@ class Methods {
 	 * @param audio {type.FileId | type.InputFile | type.Str} - Audio file to send.
 	 * @param caption? {type.String} - Caption of the message to be sent, 0-1024 characters
 	 * @param parse_mode? {type.ParseMode} - Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-	 * @param caption_entities? {type.MessageEntity[]} - List of special entities that appear in message text,
+	 * @param caption_entities? {type.MessageEntity[]|type.ArrayObject} - List of special entities that appear in message text,
 	 * @param reply_to_message_id? {type.MessageId} - If the message is a reply, ID of the original message
 	 * @param protect_content? {type.Boolean} - If set to True, the message will be sent even if the specified replied-to message is not found
 	 * @param disable_notification? {type.Boolean} - Sends the message silently. Users will receive a notification with no sound.
@@ -419,7 +419,7 @@ class Methods {
 		disable_notification?: type.Bool,
 		reply_markup?: type.ReplyMarkup,
 		allow_sending_without_reply?: type.Bool,
-		caption_entities?: type.MessageEntity[],
+		caption_entities?: type.MessageEntity[]|type.ArrayObject,
 		protect_content?: type.Bool,
 	): Promise<type.Message> => this.call('sendAudio', {
 		chat_id,
@@ -449,7 +449,7 @@ class Methods {
 	 * @param document {type.FileId | type.InputFile | type.Str} - Document to send.
 	 * @param caption? {type.String} - Caption of the message to be sent, 0-1024 characters
 	 * @param parse_mode? {type.ParseMode} - Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-	 * @param caption_entities? {type.MessageEntity[]} - List of special entities that appear in message text,
+	 * @param caption_entities? {type.MessageEntity[]|type.ArrayObject} - List of special entities that appear in message text,
 	 * @param reply_to_message_id? {type.MessageId} - If the message is a reply, ID of the original message
 	 * @param protect_content? {type.Boolean} - If set to True, the message will be sent even if the specified replied-to message is not found
 	 * @param disable_notification? {type.Boolean} - Sends the message silently. Users will receive a notification with no sound.
@@ -467,7 +467,7 @@ class Methods {
 		disable_notification?: type.Bool,
 		reply_markup?: type.ReplyMarkup,
 		allow_sending_without_reply?: type.Bool,
-		caption_entities?: type.MessageEntity[],
+		caption_entities?: type.MessageEntity[]|type.ArrayObject,
 		protect_content?: type.Bool,
 		disable_content_type_detection?: type.Bool,
 		thumb?: type.FileId | type.InputFile | type.Str,
@@ -502,7 +502,7 @@ class Methods {
 	 * @param width? {type.Num} - Video width
 	 * @param height? {type.Num} - Video height
 	 * @param thumb? {type.FileId | type.InputFile | type.Str} - Thumbnail of the file sent.
-	 * @param caption_entities? {type.MessageEntity[]} - List of special entities that appear in message text,
+	 * @param caption_entities? {type.MessageEntity[]|type.ArrayObject} - List of special entities that appear in message text,
 	 * @param reply_to_message_id? {type.MessageId} - If the message is a reply, ID of the original message
 	 * @param protect_content? {type.Boolean} - If set to True, the message will be sent even if the specified replied-to message is not found
 	 * @param disable_notification? {type.Boolean} - Sends the message silently. Users will receive a notification with no sound.
@@ -520,7 +520,7 @@ class Methods {
 		disable_notification?: type.Bool,
 		reply_markup?: type.ReplyMarkup,
 		allow_sending_without_reply?: type.Bool,
-		caption_entities?: type.MessageEntity[],
+		caption_entities?: type.MessageEntity[]|type.ArrayObject,
 		protect_content?: type.Bool,
 		supports_streaming?: type.Bool,
 		thumb?: type.FileId | type.InputFile | type.Str,
@@ -560,7 +560,7 @@ class Methods {
 	 * @param width? {type.Num} - Animation width
 	 * @param height? {type.Num} - Animation height
 	 * @param thumb? {type.FileId | type.InputFile | type.Str} - Thumbnail of the file sent.
-	 * @param caption_entities? {type.MessageEntity[]} - List of special entities that appear in message text,
+	 * @param caption_entities? {type.MessageEntity[]|type.ArrayObject} - List of special entities that appear in message text,
 	 * @param reply_to_message_id? {type.MessageId} - If the message is a reply, ID of the original message
 	 * @param protect_content? {type.Boolean} - If set to True, the message will be sent even if the specified replied-to message is not found
 	 * @param disable_notification? {type.Boolean} - Sends the message silently. Users will receive a notification with no sound.
@@ -577,7 +577,7 @@ class Methods {
 		disable_notification?: type.Bool,
 		reply_markup?: type.ReplyMarkup,
 		allow_sending_without_reply?: type.Bool,
-		caption_entities?: type.MessageEntity[],
+		caption_entities?: type.MessageEntity[]|type.ArrayObject,
 		protect_content?: type.Bool,
 		thumb?: type.FileId | type.InputFile | type.Str,
 		duration?: type.Num,
@@ -613,7 +613,7 @@ class Methods {
 	 * @param voice {type.FileId | type.InputFile | type.Str} - Voice to send.
 	 * @param caption? {type.String} - Caption of the Voice to be sent, 0-1024 characters
 	 * @param parse_mode? {type.ParseMode} - Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-	 * @param caption_entities? {type.MessageEntity[]} - List of special entities that appear in message text,
+	 * @param caption_entities? {type.MessageEntity[]|type.ArrayObject} - List of special entities that appear in message text,
 	 * @param reply_to_message_id? {type.MessageId} - If the message is a reply, ID of the original message
 	 * @param protect_content? {type.Boolean} - If set to True, the message will be sent even if the specified replied-to message is not found
 	 * @param disable_notification? {type.Boolean} - Sends the message silently. Users will receive a notification with no sound.
@@ -630,7 +630,7 @@ class Methods {
 		disable_notification?: type.Bool,
 		reply_markup?: type.ReplyMarkup,
 		allow_sending_without_reply?: type.Bool,
-		caption_entities?: type.MessageEntity[],
+		caption_entities?: type.MessageEntity[]|type.ArrayObject,
 		protect_content?: type.Bool,
 	): Promise<type.Message> => this.call('sendVoice', {
 		chat_id,
@@ -656,7 +656,7 @@ class Methods {
 	 * @param video_note {type.FileId | type.InputFile | type.Str} - Video note to send
 	 * @param caption? {type.String} - Caption of the Video note to be sent, 0-1024 characters
 	 * @param parse_mode? {type.ParseMode} - Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-	 * @param caption_entities? {type.MessageEntity[]} - List of special entities that appear in message text,
+	 * @param caption_entities? {type.MessageEntity[]|type.ArrayObject} - List of special entities that appear in message text,
 	 * @param reply_to_message_id? {type.MessageId} - If the message is a reply, ID of the original message
 	 * @param protect_content? {type.Boolean} - If set to True, the message will be sent even if the specified replied-to message is not found
 	 * @param disable_notification? {type.Boolean} - Sends the message silently. Users will receive a notification with no sound.
@@ -679,7 +679,7 @@ class Methods {
 		disable_notification?: type.Bool,
 		reply_markup?: type.ReplyMarkup,
 		allow_sending_without_reply?: type.Bool,
-		caption_entities?: type.MessageEntity[],
+		caption_entities?: type.MessageEntity[]|type.ArrayObject,
 		protect_content?: type.Bool,
 	): Promise<type.Message> => this.call('sendVideoNote', {
 		chat_id,
@@ -950,7 +950,7 @@ class Methods {
 	 * @param correct_option_id? {type.Num} - 0-based identifier of the correct answer option, required for polls in quiz mode
 	 * @param explanation? {type.String} - Text that is shown when a user chooses an incorrect answer or taps on the lamp icon in a quiz-style poll, 0-200 characters with at most 2 line feeds after entities parsing
 	 * @param explanation_parse_mode? {type.ParseMode} - Mode for parsing entities in the explanation. See formatting options for more details.
-	 * @param explanation_entities? {type.MessageEntity[]} - List of special entities that appear in the explanation, which can be specified instead of parse_mode
+	 * @param explanation_entities? {type.MessageEntity[]|type.ArrayObject} - List of special entities that appear in the explanation, which can be specified instead of parse_mode
 	 * @param open_period? {type.Num} - Amount of time in seconds the poll will be active after creation, 5-600. Can't be used together with close_date.
 	 * @param close_date? {type.Num} - Point in time (Unix timestamp) when the poll will be automatically closed. Must be at least 5 and no more than 600 seconds in the future. Can't be used together with open_period.
 	 * @param is_closed? {type.Bool} - Pass True, if the poll needs to be immediately closed
@@ -972,7 +972,7 @@ class Methods {
 		correct_option_id?: type.Num,
 		explanation?: type.String,
 		explanation_parse_mode?: type.ParseMode,
-		explanation_entities?: type.MessageEntity[],
+		explanation_entities?: type.MessageEntity[]|type.ArrayObject,
 		open_period?: type.Num,
 		close_date?: type.Num,
 		is_closed?: type.Bool,
@@ -1691,13 +1691,13 @@ class Methods {
 	 * See https://core.telegram.org/bots#commands for more details about bot commands.
 	 * Returns True on success.
 	 *
-	 * @param commands {type.BotCommand[]} - A JSON-serialized list of bot commands to be set as the list of the bot's commands.
+	 * @param commands {type.BotCommand[]|type.ArrayObject} - A JSON-serialized list of bot commands to be set as the list of the bot's commands.
 	 * @param scope {type.BotCommandScope} - Optional. A JSON-serialized object, describing scope of users for which the commands are relevant. Defaults to BotCommandScopeDefault.
 	 * @param language_code {type.Str} - Optional. If specified, commands will be available only for users of that language. Otherwise, commands will be available for all users.
 	 * @returns {Promise<type.Bool>}
 	 */
 	setMyCommands = (
-		commands: type.BotCommand[],
+		commands: type.BotCommand[]|type.ArrayObject,
 		scope?: type.BotCommandScope,
 		language_code?: type.Str,
 	): Promise<type.Bool> => this.call('setMyCommands', {
@@ -1825,7 +1825,7 @@ class Methods {
 	 * @param inline_message_id {type.Str} - Required. Identifier of the inline message
 	 * @param text {type.Str} - Required. New text of the message
 	 * @param parse_mode {type.Str} - Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-	 * @param entities {type.JsonMessageEntity[]} - Optional. List of special entities that appear in the message,
+	 * @param entities {type.MessageEntity[]|type.ArrayObject} - Optional. List of special entities that appear in the message,
 	 * @param disable_web_page_preview?: {type.Bool} - Optional. Disables link previews for links in this message.
 	 * @param reply_markup {type.InlineKeyboardMarkup} - Optional. A JSON-serialized object for an inline keyboard.
 	 * @returns {Promise<type.Message|type.Bool>}
@@ -1836,7 +1836,7 @@ class Methods {
 		message_id?: type.MessageId,
 		inline_message_id?: type.Str,
 		parse_mode?: type.Str,
-		entities?: type.JsonMessageEntity[],
+		entities?: type.MessageEntity[]|type.ArrayObject,
 		disable_web_page_preview?: type.Bool,
 		reply_markup?: type.InlineKeyboardMarkup,
 	): Promise<type.Message | type.Bool> => this.call('editMessageText', {
@@ -1863,7 +1863,7 @@ class Methods {
 	 * @param inline_message_id {type.Str} - Required. Identifier of the inline message
 	 * @param caption {type.Str} - Required. New caption of the message
 	 * @param parse_mode {type.Str} - Optional. Send Markdown or HTML, if you want Telegram apps to show bold, italic, fixed-width text or inline URLs in your bot's message.
-	 * @param caption_entities {type.JsonMessageEntity[]} - Optional. List of special entities that appear in the message,
+	 * @param caption_entities {type.MessageEntity[]|type.ArrayObject} - Optional. List of special entities that appear in the message,
 	 * @param reply_markup {type.InlineKeyboardMarkup} - Optional. A JSON-serialized object for an inline keyboard.
 	 * @returns {Promise<type.Message|type.Bool>}
 	 */
@@ -1873,7 +1873,7 @@ class Methods {
 		message_id?: type.MessageId,
 		inline_message_id?: type.Str,
 		parse_mode?: type.Str,
-		caption_entities?: type.JsonMessageEntity[],
+		caption_entities?: type.MessageEntity[]|type.ArrayObject,
 		reply_markup?: type.InlineKeyboardMarkup,
 	): Promise<type.Message | type.Bool> => this.call('editMessageCaption', {
 		chat_id,
@@ -2148,7 +2148,7 @@ class Methods {
 	 * No more than 50 results per query are allowed.
 	 *
 	 * @param inline_query_id {type.Str} - Required. Unique identifier for the answered query
-	 * @param results {type.InlineQueryResult[]} - Required. A JSON-serialized array of results for the inline query
+	 * @param results {type.InlineQueryResult[]|type.ArrayObject} - Required. A JSON-serialized array of results for the inline query
 	 * @param cache_time {type.Num} - Optional. The maximum amount of time in seconds that the result of the inline query may be cached on the server. Defaults to 300.
 	 * @param is_personal {type.Bool} - Optional. Pass True, if results may be cached on the server side only for the user that sent the query. By default, results may be returned to any user who sends the same query
 	 * @param next_offset {type.Str} - Optional. Pass the offset that a client should send in the next query with the same text to receive more results. Pass an empty string if there are no more results or if you don't support pagination. Offset length can't exceed 64 bytes.
@@ -2160,7 +2160,7 @@ class Methods {
 
 	answerInlineQuery = (
 		inline_query_id: type.Str,
-		results: type.InlineQueryResult[],
+		results: type.InlineQueryResult[]|type.ArrayObject,
 		cache_time?: type.Num,
 		is_personal?: type.Bool,
 		next_offset?: type.Str,
@@ -2184,13 +2184,13 @@ class Methods {
 	 * a SentWebAppMessage object is returned.
 	 *
 	 * @param web_app_query_id {type.Str} - Required. Unique identifier for the query to be answered
-	 * @param result {type.InlineQueryResult[]} - Required. A JSON-serialized array of results for the inline query
+	 * @param result {type.InlineQueryResult[]|type.ArrayObject} - Required. A JSON-serialized array of results for the inline query
 	 * @returns {Promise<type.SentWebAppMessage>}
 	 * @see {@link https://core.telegram.org/bots/api#answerwebappquery}
 	 */
 	answerWebAppQuery = (
 		web_app_query_id: type.Str,
-		result: type.InlineQueryResult[],
+		result: type.InlineQueryResult[]|type.ArrayObject,
 	): Promise<type.SentWebAppMessage> => this.call('answerWebAppQuery', {
 		web_app_query_id,
 		result,
@@ -2206,9 +2206,9 @@ class Methods {
 	 * @param payload {type.Str} - Required. Product payload, 1-128 bytes
 	 * @param provider_token {type.Str} - Required. Payments provider token, obtained via Botfather
 	 * @param currency {type.Str} - Required. Three-letter ISO 4217 currency code
-	 * @param prices {type.LabeledPrice[]} - Required. Price breakdown, a list of components
+	 * @param prices {type.LabeledPrice[]|type.ArrayObject} - Required. Price breakdown, a list of components
 	 * @param max_tip_amount {type.Num} - Optional. The maximum accepted amount for tips in the smallest units of the currency (integer, not float/double). For example, for a maximum tip of US$ 1.45 pass max_tip_amount = 145. See the exp parameter in currencies.json, it shows the number of digits past the decimal point for each currency (2 for the majority of currencies). Defaults to 0
-	 * @param suggested_tip_amounts {type.Num[]} - Optional. A JSON-serialized array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed max_tip_amount.
+	 * @param suggested_tip_amounts {type.Num[]|type.ArrayObject} - Optional. A JSON-serialized array of suggested amounts of tips in the smallest units of the currency (integer, not float/double). At most 4 suggested tip amounts can be specified. The suggested tip amounts must be positive, passed in a strictly increased order and must not exceed max_tip_amount.
 	 * @param start_parameter {type.Str} - Required. Unique deep-linking parameter that can be used to generate this invoice
 	 * @param provider_data {type.Str} - Optional. JSON-encoded data about the invoice, which will be shared with the payment provider. A stringified JSON object with the following fields:
 	 * @param photo_url {type.Str} - Optional. URL of the product photo for the invoice. Can be a photo of the goods or a marketing image for a service. People like it better when they see what they are paying for.
@@ -2239,9 +2239,9 @@ class Methods {
 		payload: type.Str,
 		provider_token: type.Str,
 		currency: type.Str,
-		prices: type.LabeledPrice[],
+		prices: type.LabeledPrice[]|type.ArrayObject,
 		max_tip_amount?: type.Num,
-		suggested_tip_amounts?: type.Num[],
+		suggested_tip_amounts?: type.Num[]|type.ArrayObject,
 		start_parameter?: type.Str,
 		provider_data?: type.Str,
 		photo_url?: type.Str,
@@ -2300,7 +2300,7 @@ class Methods {
 	 *
 	 * @param shipping_query_id {type.Str} - Required. Unique identifier for the query
 	 * @param ok {type.Bool} - Required. Specify True if delivery to the specified address is possible and False if not
-	 * @param shipping_options {type.ShippingOption[]} - Optional. Required if ok is True. A JSON-serialized array of available shipping options.
+	 * @param shipping_options {type.ShippingOption[]|type.ArrayObject} - Optional. Required if ok is True. A JSON-serialized array of available shipping options.
 	 * @param error_message {type.Str} - Optional. Required if ok is False. Error message in human readable form that explains why it is impossible to complete the order (e.g. "Sorry, delivery to your desired address is unavailable').
 	 * @returns {Promise<type.Bool>}
 	 * @see {@link https://core.telegram.org/bots/api#answershippingquery}
@@ -2309,7 +2309,7 @@ class Methods {
 	answerShippingQuery = (
 		shipping_query_id: type.Str,
 		ok: type.Bool,
-		shipping_options: type.ShippingOption[],
+		shipping_options: type.ShippingOption[]|type.ArrayObject,
 		error_message: type.Str,
 	): Promise<type.Bool> => this.call('answerShippingQuery', {
 		shipping_query_id,

@@ -205,12 +205,10 @@ export class Message extends _Message {
 		return 'unknown'
 	}
 
-	reply(text: string, reply_markup?: ReplyMarkup, parse_mode?: ParseMode) : never | Promise<Message> {
-		if (!this.chat) {
-			throw Error('Can\'t reply on a message while there\'s not message.')
-		}
-
-		return this.methods.sendMessage(this.chat.id, text, this.message_id, parse_mode, reply_markup)
+	reply(text: string, reply_markup?: ReplyMarkup, parse_mode?: ParseMode,reply_to_message_id?: MessageId, disable_web_page_preview = true, disable_notification = true, protect_content = false, allow_sending_without_reply = true, ): never | Promise<Message> {
+		if (!this.chat) throw Error('Can\'t reply on a message while there\'s not message.')
+		
+		return this.methods.sendMessage(this.chat.id, text, this.message_id, parse_mode, reply_markup, undefined, disable_web_page_preview, disable_notification, protect_content, allow_sending_without_reply)
 	}
 
 	onMatch(match: RegExp, next: (matcher?: any | any[]) => Bool): Bool {
