@@ -1,8 +1,10 @@
 # TeleLib
 
-a node js Telegram Wrapper written in TypeScript.
+A Telegram Wrapper.
 
-## installation
+## NodeJS
+
+### installation
 
 ```bash
 yarn add @telelib/telelib
@@ -14,7 +16,7 @@ or
 npm i --save @telelib/telelib
 ```
 
-## how to use
+### how to use
 
 create a .js or a .ts file
 install the package using npm or yarn
@@ -69,15 +71,15 @@ TelegramBot.start()
 
 ## more info
 
-### issues / bugs / suggestions ?
+## issues / bugs / suggestions ?
 
 there's no template for now, just open an issue or fix it and do a Pull request, your name will be here as a contributor. :)
 
-### contributors
+## contributors
 
 [Mohammad Mahdi Afshar](https://github.com/reloadlife) - [me@mamad.dev](mailto:me@mamad.dev) - [Telegram](tg://resolve?domain=TheyCallMeMamad) - Maintainer
 
-### todo list
+## todo list
 
 - [ ] Write Full Documentation
 - [ ] add Helper methods
@@ -87,3 +89,14 @@ there's no template for now, just open an issue or fix it and do a Pull request,
 - [ ] Implement TelegramPassport related methods
 - [ ] Add MTProto and TDLib Wrapper.
 - [ ] Clean up and optimize the code.
+
+## Supported Languages
+
+- [x] TypeScript
+- [ ] Python
+- [ ] PHP
+- [ ] Lua
+- [ ] Ruby
+- [ ] Go
+- [ ] Perl
+- [ ] Julia
