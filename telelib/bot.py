@@ -12,16 +12,16 @@ class Bot:
         self.__token = token
         self.__url = url
         self.__r_url = f"{url}bot{token}/"
-        
+
         self.__threads = []
         self.__status = "stopped"
-    
+
     def start(self):
         self.__status = "running"
-    
+
     def stop(self):
         self.__status = "stopped"
-    
+
     def __enter__(self):
         self.start()
         return self

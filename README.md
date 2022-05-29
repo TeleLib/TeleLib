@@ -2,6 +2,7 @@
 
 A Telegram Wrapper.
 
+---
 ## NodeJS
 
 install NodeJS version Via `npm` or `yarn`
@@ -49,10 +50,13 @@ TelegramBot.start()
 - replace `[TOKEN]` with your telegram bot token
 
 
+---
 ## Python
 
-being worked on ...
+- will be added soon :)
 
+
+---
 ## more info
 
 - for more examples visit [examples](/examples)
@@ -60,12 +64,20 @@ being worked on ...
 
 ## issues / bugs / suggestions ?
 
-there's no template for now, just open an issue or fix it and do a Pull request, your name will be here as a contributor. :)
+fix it and open a Pull request :)
+
+don't forget to follow our [contribution rules](/CONTRIBUTING.md)
 
 ## contributors
 
 - [ReloadLife](https://github.com/reloadlife) - Maintainer
 
+</br>
+
+- [Your name can be here :)](/CONTRIBUTING.md)
+
+
+----
 ## todo list
 
 - [ ] Write Full Documentation
