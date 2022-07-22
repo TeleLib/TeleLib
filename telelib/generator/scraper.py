@@ -8,6 +8,8 @@ import requests
 from bs4 import BeautifulSoup
 from bs4.element import Tag
 
+from telelib import generator_path
+
 TG_CORE_TYPES = ["String", "Boolean", "Integer", "Float"]
 ROOT_URL = "https://core.telegram.org"
 TO_SCRAPE = {
@@ -23,57 +25,6 @@ APPROVED_NO_SUBTYPES = {
 APPROVED_MULTI_RETURNS = [
     ['Message', 'Boolean']
 ]
-
-
-def retrieve_info(url: str) -> dict:
-    r = requests.get(url)
-    soup = BeautifulSoup(r.text, features="html5lib")
-    dev_rules = soup.find("div", {"id": "dev_page_content"})
-    curr_type = ""
-    curr_name = ""
-
-    items = {
-        METHODS: dict(),
-        TYPES: dict(),
-    }
-
-    for x in list(dev_rules.children):
-        if x.name == "h3" or x.name == "hr":
-            curr_name = ""
-            curr_type = ""
-
-        if x.name == "h4":
-            anchor = x.find("a")
-            name = anchor.get("name")
-            if name and "-" in name:
-                curr_name = ""
-                curr_type = ""
-                continue
-
-            curr_name, curr_type = get_type_and_name(x, anchor, items, url)
-
-        if not curr_type or not curr_name:
-            continue
-
-        if x.name == "p":
-            items[curr_type][curr_name].setdefault(
-                "description", []).extend(clean_tg_description(x, url))
-
-        if x.name == "table":
-            get_fields(curr_name, curr_type, x, items, url)
-
-        if x.name == "ul":
-            get_subtypes(curr_name, curr_type, x, items, url)
-
-        if curr_type == METHODS and \
-                items[curr_type][curr_name].get("description"):
-            get_method_return_type(
-                curr_name, curr_type,
-                items[curr_type][curr_name].get("description"),
-                items
-            )
-
-    return items
 
 
 def get_subtypes(curr_name: str, curr_type: str, x: Tag, items: dict, url: str):
@@ -142,21 +93,6 @@ def get_method_return_type(curr_name: str, curr_type: str,
     elif ret_search2:
         extract_return_type(curr_type, curr_name,
                             ret_search2.group(1).strip(), items)
-
-
-def get_type_and_name(t: Tag, anchor: Tag, items: dict, url: str):
-    if t.text[0].isupper():
-        curr_type = TYPES
-    else:
-        curr_type = METHODS
-    curr_name = t.get_text()
-    items[curr_type][curr_name] = {"name": curr_name}
-
-    href = anchor.get("href")
-    if href:
-        items[curr_type][curr_name]["href"] = url + href
-
-    return curr_name, curr_type
 
 
 def extract_return_type(curr_type: str,
@@ -349,22 +285,3 @@ def verify_method_parameters(items: dict) -> bool:
                 print("UNKNOWN RETURN TYPE", ret)
 
     return issue_found
-
-
-def main():
-    for filename, url in TO_SCRAPE.items():
-        print("parsing", url)
-        items = retrieve_info(url)
-        if verify_type_parameters(items) or verify_method_parameters(items):
-            print("Failed to validate schema. View logs above for more information.")
-            exit(1)
-
-        with open(f"{filename}.json", "w") as f:
-            json.dump(items, f, indent=4)
-
-        with open(f"{filename}.min.json", "w") as f:
-            json.dump(items, f)
-
-
-if __name__ == '__main__':
-    main()
