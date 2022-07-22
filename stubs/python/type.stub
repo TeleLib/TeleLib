@@ -1,0 +1,12 @@
+
+
+from telelib.bot import DefaultType
+
+"""
+{{Summery}}
+"""
+class {{TypeName}}(DefaultType):
+
+    @property
+    def {{PropertyName}}(self) -> {{PropertyType}}:
+        return self._d[{{PropertyName}}]
