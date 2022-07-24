@@ -5,11 +5,12 @@ setuptools.setup(
     description="A Telegram Wrapper Written in ?",
     author="Mohammad Mahdi Afshar",
     author_email="me@mamad.dev",
-    version='6.0.0',
+    version=open("VERSION").read().strip(),
     license="The Unlicensed",
     packages=setuptools.find_packages(),
     dependencies=[
         "thread_py",
+        "xhttp",
     ],
     classifiers=[
         "Intended Audience :: Developers",
