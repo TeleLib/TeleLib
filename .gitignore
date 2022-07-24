@@ -8,3 +8,17 @@ yarn-error.log
 .env.*
 dist/
 
+__pycache__/*
+*.pyc
+*.pyo
+.Python
+.Python*
+.venv
+.venv/*
+.egg-info
+.egg-info/*
+.installed.cfg
+.pip-delete-this-directory
+.pip-selfcheck.json
+Pipfile.lock
+Pipfile.lock.*
