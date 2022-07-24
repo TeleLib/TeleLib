@@ -1,62 +1,13 @@
 # TeleLib
 
-A Telegram Wrapper.
+A Telegram Library that uses Python to generate Wrappers on Any language you like :)
 
 ---
-## NodeJS
 
-install NodeJS version Via `npm` or `yarn`
-
-```bash
-yarn add @telelib/telelib
-# or
-npm i --save @telelib/telelib
-```
-
-create a .js or a .ts file
-install the package using npm or yarn
-
-import the package:
-
-```typescript
-import {
-    Bot,
-    types, // since it's typescript, import Types as well
-} from '@telelib/telelib'
-
-// create an instance:
-const TelegramBot = new Bot({
- telegram: {
-  token: '[TOKEN]',
- },
- debug: true // provide to enable debug mode.
-})
-
-// create a listener on 'Message' Type:
-TelegramBot.client.on(
- 'message',
- (msg: types.Message) => {
-  if (msg.text) {
-   return msg.reply(`your message was:\n${msg.text}`)
-  }
-  msg.reply('i only understand text messages')
- }
-)
-
-// then start the loop to fetch updates from telegram.
-TelegramBot.start()
-```
-
-- replace `[TOKEN]` with your telegram bot token
-
+## Usage
 
 ---
-## Python
 
-- will be added soon :)
-
-
----
 ## more info
 
 - for more examples visit [examples](/examples)
@@ -76,10 +27,11 @@ don't forget to follow our [contribution rules](/CONTRIBUTING.md)
 
 - [Your name can be here :)](/CONTRIBUTING.md)
 
-
 ----
+
 ## todo list
 
+- [x] Write Code that write code for methods and types.
 - [ ] Write Full Documentation
 - [ ] add Helper methods
 - [ ] Add More examples
@@ -92,7 +44,7 @@ don't forget to follow our [contribution rules](/CONTRIBUTING.md)
 ## Supported Languages
 
 - [x] TypeScript
-- [ ] Python
+- [x] Python
 - [ ] PHP
 - [ ] Lua
 - [ ] Ruby
