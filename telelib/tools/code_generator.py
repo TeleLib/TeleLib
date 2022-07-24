@@ -68,8 +68,12 @@ class TypeName(DefaultType):
                 for field in d["fields"]:
                     _types = []
                     for i in field['types']:
+                        if "Array of Array of " in i:
+                            i = f"List[List[{i.split('Array of ')[-1]}]]"
+                            
                         if "Array of" in i:
-                            i = f"List[{i.split('Array of ')[1]}]"
+                            i = f"List[{i.split('Array of ')[-1]}]"
+                        
                         _types.append(i)
                     if not field['required']:
                         _types.append("None")
@@ -158,8 +162,11 @@ class TypeName(DefaultMethod):
                 for field in d["fields"]:
                     _types = []
                     for i in field['types']:
+                        if "Array of Array of " in i:
+                            i = f"List[List[{i.split('Array of ')[-1]}]]"
                         if "Array of" in i:
-                            i = f"List[{i.split('Array of ')[1]}]"
+                            i = f"List[{i.split('Array of ')[-1]}]"
+                        
                         _types.append(i)
                     t = "|".join(map(lambda x: f'"{x}"', _types))
                     _safe_name = str(field['name']).replace('from', 'from_')
@@ -194,8 +201,11 @@ class TypeName(DefaultMethod):
                 )
 
             res_type = d["returns"][0]
+            
+            if "Array of Array of " in res_type:
+                res_type = f"List[List[{res_type.split('Array of ')[-1]}]]"
             if "Array of" in res_type:
-                res_type = f"List[{res_type.split('Array of ')[1]}]"
+                res_type = f"List[{res_type.split('Array of ')[-1]}]"
 
             class_generated = class_generated.replace(
                 'RESULT_TYPE',
