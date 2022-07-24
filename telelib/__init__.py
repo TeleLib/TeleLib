@@ -66,5 +66,5 @@ class TeleLib:
         documents_path = "https://core.telegram.org/bots/api"
 
         @staticmethod
-        def scraper():
-            return Scraper().run("min.json", None)
+        def ScraperRun():
+            return Scraper().run("min.json")
