@@ -67,4 +67,4 @@ class TeleLib:
 
         @staticmethod
         def scraper():
-            return Scraper()
+            return Scraper().run("min.json", None)
