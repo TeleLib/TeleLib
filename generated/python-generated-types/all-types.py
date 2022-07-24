@@ -22,14 +22,17 @@ class Update(DefaultType):
 
     @property
     def update_id(self) -> "Integer":
+
         return self._d["update_id"]
 
     @property
     def message(self) -> "Message" | "None":
+
         return self._d["message"]
 
     @property
     def edited_message(self) -> "Message" | "None":
+
         return self._d["edited_message"]
 
     @property
@@ -535,9 +538,8 @@ class Message(DefaultType):
         return self._d["channel_chat_created"]
 
     @property
-    def message_auto_delete_timer_changed(
-        self
-    ) -> "MessageAutoDeleteTimerChanged" | "None":
+    def message_auto_delete_timer_changed(self) -> "MessageAutoDeleteTimerChanged" | "None":
+
         return self._d["message_auto_delete_timer_changed"]
 
     @property
@@ -596,9 +598,7 @@ class Message(DefaultType):
         return self._d["video_chat_ended"]
 
     @property
-    def video_chat_participants_invited(
-        self
-    ) -> "VideoChatParticipantsInvited" | "None":
+    def video_chat_participants_invited(self) -> "VideoChatParticipantsInvited" | "None":
 
         return self._d["video_chat_participants_invited"]
 
@@ -1207,7 +1207,7 @@ class UserProfilePhotos(DefaultType):
         return self._d["total_count"]
 
     @property
-    def photos(self) -> "List[]":
+    def photos(self) -> "List[List[PhotoSize]]":
 
         return self._d["photos"]
 
@@ -1246,7 +1246,7 @@ class WebAppInfo(DefaultType):
 class ReplyKeyboardMarkup(DefaultType):
 
     @property
-    def keyboard(self) -> "List[]":
+    def keyboard(self) -> "List[List[KeyboardButton]]":
 
         return self._d["keyboard"]
 
@@ -1323,7 +1323,7 @@ class ReplyKeyboardRemove(DefaultType):
 class InlineKeyboardMarkup(DefaultType):
 
     @property
-    def inline_keyboard(self) -> "List[]":
+    def inline_keyboard(self) -> "List[List[InlineKeyboardButton]]":
 
         return self._d["inline_keyboard"]
 
