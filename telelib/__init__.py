@@ -6,7 +6,7 @@ __all__ = ["TeleLib", "main_path"]
 import asyncio
 import os
 from thread_py import ThreadPy
-
+from telelib.tools.code_generator import CodeGenerator
 from telelib.tools.scraper import Scraper
 
 main_path = os.path.realpath(
@@ -68,3 +68,7 @@ class TeleLib:
         @staticmethod
         def ScraperRun():
             return Scraper().run("min.json")
+
+        @staticmethod
+        def CodeGeneratorRun():
+            return CodeGenerator().run("min.json")
