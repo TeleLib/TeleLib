@@ -2,6 +2,8 @@ from typing import List
 
 from telelib.bot import DefaultType
 
+from telelib.bot import DefaultMethod
+
 
 class Integer(int):
     ...
@@ -5237,3 +5239,2305 @@ class GameHighScore(DefaultType):
         self
     ) -> "Integer":
         return self._d["score"]
+
+
+class getUpdates(DefaultMethod):
+
+    def __init__(
+        self,
+        offset: "Integer" = None,
+                limit: "Integer" = None,
+                timeout: "Integer" = None,
+                allowed_updates: "List[String]" = None,
+    ):
+        self._method = "getUpdates"
+        self._res_type = "List[Update]"
+        self._args = {}
+        self._args['offset'] = offset
+        self._args['limit'] = limit
+        self._args['timeout'] = timeout
+        self._args['allowed_updates'] = allowed_updates
+
+    def result(self) -> "List[Update]":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setWebhook(DefaultMethod):
+
+    def __init__(
+        self,
+        url: "String",
+        certificate: "InputFile" = None,
+        ip_address: "String" = None,
+        max_connections: "Integer" = None,
+        allowed_updates: "List[String]" = None,
+        drop_pending_updates: "Boolean" = None,
+        secret_token: "String" = None,
+    ):
+        self._method = "setWebhook"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['url'] = url
+        self._args['certificate'] = certificate
+        self._args['ip_address'] = ip_address
+        self._args['max_connections'] = max_connections
+        self._args['allowed_updates'] = allowed_updates
+        self._args['drop_pending_updates'] = drop_pending_updates
+        self._args['secret_token'] = secret_token
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class deleteWebhook(DefaultMethod):
+
+    def __init__(
+        self,
+        drop_pending_updates: "Boolean" = None,
+    ):
+        self._method = "deleteWebhook"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['drop_pending_updates'] = drop_pending_updates
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getWebhookInfo(DefaultMethod):
+
+    def __init__(
+        self,
+
+    ):
+        self._method = "getWebhookInfo"
+        self._res_type = "WebhookInfo"
+        self._args = {}
+
+    def result(self) -> "WebhookInfo":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getMe(DefaultMethod):
+
+    def __init__(
+        self,
+
+    ):
+        self._method = "getMe"
+        self._res_type = "User"
+        self._args = {}
+
+    def result(self) -> "User":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class logOut(DefaultMethod):
+
+    def __init__(
+        self,
+
+    ):
+        self._method = "logOut"
+        self._res_type = "Boolean"
+        self._args = {}
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class close(DefaultMethod):
+
+    def __init__(
+        self,
+
+    ):
+        self._method = "close"
+        self._res_type = "Boolean"
+        self._args = {}
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendMessage(DefaultMethod):
+
+    def __init__(
+        self,
+        text: "String",
+        chat_id: "Integer" | "String",
+        parse_mode: "String" = None,
+        entities: "List[MessageEntity]" = None,
+        disable_web_page_preview: "Boolean" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendMessage"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['text'] = text
+        self._args['parse_mode'] = parse_mode
+        self._args['entities'] = entities
+        self._args['disable_web_page_preview'] = disable_web_page_preview
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class forwardMessage(DefaultMethod):
+
+    def __init__(
+        self,
+        message_id: "Integer",
+        from__chat_id: "Integer" | "String",
+        chat_id: "Integer" | "String",
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+    ):
+        self._method = "forwardMessage"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['from_chat_id'] = from__chat_id
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['message_id'] = message_id
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class copyMessage(DefaultMethod):
+
+    def __init__(
+        self,
+        message_id: "Integer",
+        from__chat_id: "Integer" | "String",
+        chat_id: "Integer" | "String",
+        caption: "String" = None,
+        parse_mode: "String" = None,
+        caption_entities: "List[MessageEntity]" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "copyMessage"
+        self._res_type = "MessageId"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['from_chat_id'] = from__chat_id
+        self._args['message_id'] = message_id
+        self._args['caption'] = caption
+        self._args['parse_mode'] = parse_mode
+        self._args['caption_entities'] = caption_entities
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "MessageId":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendPhoto(DefaultMethod):
+
+    def __init__(
+        self,
+        photo: "InputFile" | "String",
+        chat_id: "Integer" | "String",
+        caption: "String" = None,
+        parse_mode: "String" = None,
+        caption_entities: "List[MessageEntity]" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendPhoto"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['photo'] = photo
+        self._args['caption'] = caption
+        self._args['parse_mode'] = parse_mode
+        self._args['caption_entities'] = caption_entities
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendAudio(DefaultMethod):
+
+    def __init__(
+        self,
+        audio: "InputFile" | "String",
+        chat_id: "Integer" | "String",
+        caption: "String" = None,
+        parse_mode: "String" = None,
+        caption_entities: "List[MessageEntity]" = None,
+        duration: "Integer" = None,
+        performer: "String" = None,
+        title: "String" = None,
+        thumb: "InputFile" | "String" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendAudio"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['audio'] = audio
+        self._args['caption'] = caption
+        self._args['parse_mode'] = parse_mode
+        self._args['caption_entities'] = caption_entities
+        self._args['duration'] = duration
+        self._args['performer'] = performer
+        self._args['title'] = title
+        self._args['thumb'] = thumb
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendDocument(DefaultMethod):
+
+    def __init__(
+        self,
+        document: "InputFile" | "String",
+        chat_id: "Integer" | "String",
+        thumb: "InputFile" | "String" = None,
+        caption: "String" = None,
+        parse_mode: "String" = None,
+        caption_entities: "List[MessageEntity]" = None,
+        disable_content_type_detection: "Boolean" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendDocument"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['document'] = document
+        self._args['thumb'] = thumb
+        self._args['caption'] = caption
+        self._args['parse_mode'] = parse_mode
+        self._args['caption_entities'] = caption_entities
+        self._args['disable_content_type_detection'] = disable_content_type_detection
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendVideo(DefaultMethod):
+
+    def __init__(
+        self,
+        video: "InputFile" | "String",
+        chat_id: "Integer" | "String",
+        duration: "Integer" = None,
+        width: "Integer" = None,
+        height: "Integer" = None,
+        thumb: "InputFile" | "String" = None,
+        caption: "String" = None,
+        parse_mode: "String" = None,
+        caption_entities: "List[MessageEntity]" = None,
+        supports_streaming: "Boolean" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendVideo"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['video'] = video
+        self._args['duration'] = duration
+        self._args['width'] = width
+        self._args['height'] = height
+        self._args['thumb'] = thumb
+        self._args['caption'] = caption
+        self._args['parse_mode'] = parse_mode
+        self._args['caption_entities'] = caption_entities
+        self._args['supports_streaming'] = supports_streaming
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendAnimation(DefaultMethod):
+
+    def __init__(
+        self,
+        animation: "InputFile" | "String",
+        chat_id: "Integer" | "String",
+        duration: "Integer" = None,
+        width: "Integer" = None,
+        height: "Integer" = None,
+        thumb: "InputFile" | "String" = None,
+        caption: "String" = None,
+        parse_mode: "String" = None,
+        caption_entities: "List[MessageEntity]" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendAnimation"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['animation'] = animation
+        self._args['duration'] = duration
+        self._args['width'] = width
+        self._args['height'] = height
+        self._args['thumb'] = thumb
+        self._args['caption'] = caption
+        self._args['parse_mode'] = parse_mode
+        self._args['caption_entities'] = caption_entities
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendVoice(DefaultMethod):
+
+    def __init__(
+        self,
+        voice: "InputFile" | "String",
+        chat_id: "Integer" | "String",
+        caption: "String" = None,
+        parse_mode: "String" = None,
+        caption_entities: "List[MessageEntity]" = None,
+        duration: "Integer" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendVoice"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['voice'] = voice
+        self._args['caption'] = caption
+        self._args['parse_mode'] = parse_mode
+        self._args['caption_entities'] = caption_entities
+        self._args['duration'] = duration
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendVideoNote(DefaultMethod):
+
+    def __init__(
+        self,
+        video_note: "InputFile" | "String",
+        chat_id: "Integer" | "String",
+        duration: "Integer" = None,
+        length: "Integer" = None,
+        thumb: "InputFile" | "String" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendVideoNote"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['video_note'] = video_note
+        self._args['duration'] = duration
+        self._args['length'] = length
+        self._args['thumb'] = thumb
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendMediaGroup(DefaultMethod):
+
+    def __init__(
+        self,
+        media: "List[InputMediaAudio]" | "List[InputMediaDocument]" | "List[InputMediaPhoto]" | "List[InputMediaVideo]",
+        chat_id: "Integer" | "String",
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+    ):
+        self._method = "sendMediaGroup"
+        self._res_type = "List[Message]"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['media'] = media
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+
+    def result(self) -> "List[Message]":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendLocation(DefaultMethod):
+
+    def __init__(
+        self,
+        longitude: "Float",
+        latitude: "Float",
+        chat_id: "Integer" | "String",
+        horizontal_accuracy: "Float" = None,
+        live_period: "Integer" = None,
+        heading: "Integer" = None,
+        proximity_alert_radius: "Integer" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendLocation"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['latitude'] = latitude
+        self._args['longitude'] = longitude
+        self._args['horizontal_accuracy'] = horizontal_accuracy
+        self._args['live_period'] = live_period
+        self._args['heading'] = heading
+        self._args['proximity_alert_radius'] = proximity_alert_radius
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class editMessageLiveLocation(DefaultMethod):
+
+    def __init__(
+        self,
+        longitude: "Float",
+        latitude: "Float",
+        chat_id: "Integer" | "String" = None,
+        message_id: "Integer" = None,
+        inline_message_id: "String" = None,
+        horizontal_accuracy: "Float" = None,
+        heading: "Integer" = None,
+        proximity_alert_radius: "Integer" = None,
+        reply_markup: "InlineKeyboardMarkup" = None,
+    ):
+        self._method = "editMessageLiveLocation"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+        self._args['inline_message_id'] = inline_message_id
+        self._args['latitude'] = latitude
+        self._args['longitude'] = longitude
+        self._args['horizontal_accuracy'] = horizontal_accuracy
+        self._args['heading'] = heading
+        self._args['proximity_alert_radius'] = proximity_alert_radius
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class stopMessageLiveLocation(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String" = None,
+        message_id: "Integer" = None,
+        inline_message_id: "String" = None,
+        reply_markup: "InlineKeyboardMarkup" = None,
+    ):
+        self._method = "stopMessageLiveLocation"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+        self._args['inline_message_id'] = inline_message_id
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendVenue(DefaultMethod):
+
+    def __init__(
+        self,
+        address: "String",
+        title: "String",
+        longitude: "Float",
+        latitude: "Float",
+        chat_id: "Integer" | "String",
+        foursquare_id: "String" = None,
+        foursquare_type: "String" = None,
+        google_place_id: "String" = None,
+        google_place_type: "String" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendVenue"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['latitude'] = latitude
+        self._args['longitude'] = longitude
+        self._args['title'] = title
+        self._args['address'] = address
+        self._args['foursquare_id'] = foursquare_id
+        self._args['foursquare_type'] = foursquare_type
+        self._args['google_place_id'] = google_place_id
+        self._args['google_place_type'] = google_place_type
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendContact(DefaultMethod):
+
+    def __init__(
+        self,
+        first_name: "String",
+        phone_number: "String",
+        chat_id: "Integer" | "String",
+        last_name: "String" = None,
+        vcard: "String" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendContact"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['phone_number'] = phone_number
+        self._args['first_name'] = first_name
+        self._args['last_name'] = last_name
+        self._args['vcard'] = vcard
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendPoll(DefaultMethod):
+
+    def __init__(
+        self,
+        options: "List[String]",
+        question: "String",
+        chat_id: "Integer" | "String",
+        is_anonymous: "Boolean" = None,
+        type: "String" = None,
+        allows_multiple_answers: "Boolean" = None,
+        correct_option_id: "Integer" = None,
+        explanation: "String" = None,
+        explanation_parse_mode: "String" = None,
+        explanation_entities: "List[MessageEntity]" = None,
+        open_period: "Integer" = None,
+        close_date: "Integer" = None,
+        is_closed: "Boolean" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendPoll"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['question'] = question
+        self._args['options'] = options
+        self._args['is_anonymous'] = is_anonymous
+        self._args['type'] = type
+        self._args['allows_multiple_answers'] = allows_multiple_answers
+        self._args['correct_option_id'] = correct_option_id
+        self._args['explanation'] = explanation
+        self._args['explanation_parse_mode'] = explanation_parse_mode
+        self._args['explanation_entities'] = explanation_entities
+        self._args['open_period'] = open_period
+        self._args['close_date'] = close_date
+        self._args['is_closed'] = is_closed
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendDice(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+        emoji: "String" = None,
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendDice"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['emoji'] = emoji
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendChatAction(DefaultMethod):
+
+    def __init__(
+        self,
+        action: "String",
+                chat_id: "Integer" | "String",
+    ):
+        self._method = "sendChatAction"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['action'] = action
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getUserProfilePhotos(DefaultMethod):
+
+    def __init__(
+        self,
+        user_id: "Integer",
+        offset: "Integer" = None,
+        limit: "Integer" = None,
+    ):
+        self._method = "getUserProfilePhotos"
+        self._res_type = "UserProfilePhotos"
+        self._args = {}
+        self._args['user_id'] = user_id
+        self._args['offset'] = offset
+        self._args['limit'] = limit
+
+    def result(self) -> "UserProfilePhotos":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getFile(DefaultMethod):
+
+    def __init__(
+        self,
+        file_id: "String",
+    ):
+        self._method = "getFile"
+        self._res_type = "File"
+        self._args = {}
+        self._args['file_id'] = file_id
+
+    def result(self) -> "File":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class banChatMember(DefaultMethod):
+
+    def __init__(
+        self,
+        user_id: "Integer",
+        chat_id: "Integer" | "String",
+        until_date: "Integer" = None,
+        revoke_messages: "Boolean" = None,
+    ):
+        self._method = "banChatMember"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['user_id'] = user_id
+        self._args['until_date'] = until_date
+        self._args['revoke_messages'] = revoke_messages
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class unbanChatMember(DefaultMethod):
+
+    def __init__(
+        self,
+        user_id: "Integer",
+        chat_id: "Integer" | "String",
+        only_if_banned: "Boolean" = None,
+    ):
+        self._method = "unbanChatMember"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['user_id'] = user_id
+        self._args['only_if_banned'] = only_if_banned
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class restrictChatMember(DefaultMethod):
+
+    def __init__(
+        self,
+        permissions: "ChatPermissions",
+        user_id: "Integer",
+        chat_id: "Integer" | "String",
+        until_date: "Integer" = None,
+    ):
+        self._method = "restrictChatMember"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['user_id'] = user_id
+        self._args['permissions'] = permissions
+        self._args['until_date'] = until_date
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class promoteChatMember(DefaultMethod):
+
+    def __init__(
+        self,
+        user_id: "Integer",
+        chat_id: "Integer" | "String",
+        is_anonymous: "Boolean" = None,
+        can_manage_chat: "Boolean" = None,
+        can_post_messages: "Boolean" = None,
+        can_edit_messages: "Boolean" = None,
+        can_delete_messages: "Boolean" = None,
+        can_manage_video_chats: "Boolean" = None,
+        can_restrict_members: "Boolean" = None,
+        can_promote_members: "Boolean" = None,
+        can_change_info: "Boolean" = None,
+        can_invite_users: "Boolean" = None,
+        can_pin_messages: "Boolean" = None,
+    ):
+        self._method = "promoteChatMember"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['user_id'] = user_id
+        self._args['is_anonymous'] = is_anonymous
+        self._args['can_manage_chat'] = can_manage_chat
+        self._args['can_post_messages'] = can_post_messages
+        self._args['can_edit_messages'] = can_edit_messages
+        self._args['can_delete_messages'] = can_delete_messages
+        self._args['can_manage_video_chats'] = can_manage_video_chats
+        self._args['can_restrict_members'] = can_restrict_members
+        self._args['can_promote_members'] = can_promote_members
+        self._args['can_change_info'] = can_change_info
+        self._args['can_invite_users'] = can_invite_users
+        self._args['can_pin_messages'] = can_pin_messages
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setChatAdministratorCustomTitle(DefaultMethod):
+
+    def __init__(
+        self,
+        custom_title: "String",
+        user_id: "Integer",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "setChatAdministratorCustomTitle"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['user_id'] = user_id
+        self._args['custom_title'] = custom_title
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class banChatSenderChat(DefaultMethod):
+
+    def __init__(
+        self,
+        sender_chat_id: "Integer",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "banChatSenderChat"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['sender_chat_id'] = sender_chat_id
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class unbanChatSenderChat(DefaultMethod):
+
+    def __init__(
+        self,
+        sender_chat_id: "Integer",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "unbanChatSenderChat"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['sender_chat_id'] = sender_chat_id
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setChatPermissions(DefaultMethod):
+
+    def __init__(
+        self,
+        permissions: "ChatPermissions",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "setChatPermissions"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['permissions'] = permissions
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class exportChatInviteLink(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "exportChatInviteLink"
+        self._res_type = "String"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+
+    def result(self) -> "String":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class createChatInviteLink(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+        name: "String" = None,
+        expire_date: "Integer" = None,
+        member_limit: "Integer" = None,
+        creates_join_request: "Boolean" = None,
+    ):
+        self._method = "createChatInviteLink"
+        self._res_type = "ChatInviteLink"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['name'] = name
+        self._args['expire_date'] = expire_date
+        self._args['member_limit'] = member_limit
+        self._args['creates_join_request'] = creates_join_request
+
+    def result(self) -> "ChatInviteLink":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class editChatInviteLink(DefaultMethod):
+
+    def __init__(
+        self,
+        invite_link: "String",
+        chat_id: "Integer" | "String",
+        name: "String" = None,
+        expire_date: "Integer" = None,
+        member_limit: "Integer" = None,
+        creates_join_request: "Boolean" = None,
+    ):
+        self._method = "editChatInviteLink"
+        self._res_type = "ChatInviteLink"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['invite_link'] = invite_link
+        self._args['name'] = name
+        self._args['expire_date'] = expire_date
+        self._args['member_limit'] = member_limit
+        self._args['creates_join_request'] = creates_join_request
+
+    def result(self) -> "ChatInviteLink":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class revokeChatInviteLink(DefaultMethod):
+
+    def __init__(
+        self,
+        invite_link: "String",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "revokeChatInviteLink"
+        self._res_type = "ChatInviteLink"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['invite_link'] = invite_link
+
+    def result(self) -> "ChatInviteLink":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class approveChatJoinRequest(DefaultMethod):
+
+    def __init__(
+        self,
+        user_id: "Integer",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "approveChatJoinRequest"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['user_id'] = user_id
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class declineChatJoinRequest(DefaultMethod):
+
+    def __init__(
+        self,
+        user_id: "Integer",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "declineChatJoinRequest"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['user_id'] = user_id
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setChatPhoto(DefaultMethod):
+
+    def __init__(
+        self,
+        photo: "InputFile",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "setChatPhoto"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['photo'] = photo
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class deleteChatPhoto(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "deleteChatPhoto"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setChatTitle(DefaultMethod):
+
+    def __init__(
+        self,
+        title: "String",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "setChatTitle"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['title'] = title
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setChatDescription(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+        description: "String" = None,
+    ):
+        self._method = "setChatDescription"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['description'] = description
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class pinChatMessage(DefaultMethod):
+
+    def __init__(
+        self,
+        message_id: "Integer",
+        chat_id: "Integer" | "String",
+        disable_notification: "Boolean" = None,
+    ):
+        self._method = "pinChatMessage"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+        self._args['disable_notification'] = disable_notification
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class unpinChatMessage(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+        message_id: "Integer" = None,
+    ):
+        self._method = "unpinChatMessage"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class unpinAllChatMessages(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "unpinAllChatMessages"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class leaveChat(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "leaveChat"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getChat(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "getChat"
+        self._res_type = "Chat"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+
+    def result(self) -> "Chat":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getChatAdministrators(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "getChatAdministrators"
+        self._res_type = "List[ChatMember]"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+
+    def result(self) -> "List[ChatMember]":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getChatMemberCount(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "getChatMemberCount"
+        self._res_type = "Integer"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+
+    def result(self) -> "Integer":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getChatMember(DefaultMethod):
+
+    def __init__(
+        self,
+        user_id: "Integer",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "getChatMember"
+        self._res_type = "ChatMember"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['user_id'] = user_id
+
+    def result(self) -> "ChatMember":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setChatStickerSet(DefaultMethod):
+
+    def __init__(
+        self,
+        sticker_set_name: "String",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "setChatStickerSet"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['sticker_set_name'] = sticker_set_name
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class deleteChatStickerSet(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "deleteChatStickerSet"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class answerCallbackQuery(DefaultMethod):
+
+    def __init__(
+        self,
+        callback_query_id: "String",
+        text: "String" = None,
+        show_alert: "Boolean" = None,
+        url: "String" = None,
+        cache_time: "Integer" = None,
+    ):
+        self._method = "answerCallbackQuery"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['callback_query_id'] = callback_query_id
+        self._args['text'] = text
+        self._args['show_alert'] = show_alert
+        self._args['url'] = url
+        self._args['cache_time'] = cache_time
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setMyCommands(DefaultMethod):
+
+    def __init__(
+        self,
+        commands: "List[BotCommand]",
+        scope: "BotCommandScope" = None,
+        language_code: "String" = None,
+    ):
+        self._method = "setMyCommands"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['commands'] = commands
+        self._args['scope'] = scope
+        self._args['language_code'] = language_code
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class deleteMyCommands(DefaultMethod):
+
+    def __init__(
+        self,
+        scope: "BotCommandScope" = None,
+        language_code: "String" = None,
+    ):
+        self._method = "deleteMyCommands"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['scope'] = scope
+        self._args['language_code'] = language_code
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getMyCommands(DefaultMethod):
+
+    def __init__(
+        self,
+        scope: "BotCommandScope" = None,
+        language_code: "String" = None,
+    ):
+        self._method = "getMyCommands"
+        self._res_type = "List[BotCommand]"
+        self._args = {}
+        self._args['scope'] = scope
+        self._args['language_code'] = language_code
+
+    def result(self) -> "List[BotCommand]":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setChatMenuButton(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" = None,
+        menu_button: "MenuButton" = None,
+    ):
+        self._method = "setChatMenuButton"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['menu_button'] = menu_button
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getChatMenuButton(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" = None,
+    ):
+        self._method = "getChatMenuButton"
+        self._res_type = "MenuButton"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+
+    def result(self) -> "MenuButton":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setMyDefaultAdministratorRights(DefaultMethod):
+
+    def __init__(
+        self,
+        rights: "ChatAdministratorRights" = None,
+                for_channels: "Boolean" = None,
+    ):
+        self._method = "setMyDefaultAdministratorRights"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['rights'] = rights
+        self._args['for_channels'] = for_channels
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getMyDefaultAdministratorRights(DefaultMethod):
+
+    def __init__(
+        self,
+        for_channels: "Boolean" = None,
+    ):
+        self._method = "getMyDefaultAdministratorRights"
+        self._res_type = "ChatAdministratorRights"
+        self._args = {}
+        self._args['for_channels'] = for_channels
+
+    def result(self) -> "ChatAdministratorRights":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class editMessageText(DefaultMethod):
+
+    def __init__(
+        self,
+        text: "String",
+        chat_id: "Integer" | "String" = None,
+        message_id: "Integer" = None,
+        inline_message_id: "String" = None,
+        parse_mode: "String" = None,
+        entities: "List[MessageEntity]" = None,
+        disable_web_page_preview: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" = None,
+    ):
+        self._method = "editMessageText"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+        self._args['inline_message_id'] = inline_message_id
+        self._args['text'] = text
+        self._args['parse_mode'] = parse_mode
+        self._args['entities'] = entities
+        self._args['disable_web_page_preview'] = disable_web_page_preview
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class editMessageCaption(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String" = None,
+        message_id: "Integer" = None,
+        inline_message_id: "String" = None,
+        caption: "String" = None,
+        parse_mode: "String" = None,
+        caption_entities: "List[MessageEntity]" = None,
+        reply_markup: "InlineKeyboardMarkup" = None,
+    ):
+        self._method = "editMessageCaption"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+        self._args['inline_message_id'] = inline_message_id
+        self._args['caption'] = caption
+        self._args['parse_mode'] = parse_mode
+        self._args['caption_entities'] = caption_entities
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class editMessageMedia(DefaultMethod):
+
+    def __init__(
+        self,
+        media: "InputMedia",
+        chat_id: "Integer" | "String" = None,
+        message_id: "Integer" = None,
+        inline_message_id: "String" = None,
+        reply_markup: "InlineKeyboardMarkup" = None,
+    ):
+        self._method = "editMessageMedia"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+        self._args['inline_message_id'] = inline_message_id
+        self._args['media'] = media
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class editMessageReplyMarkup(DefaultMethod):
+
+    def __init__(
+        self,
+        chat_id: "Integer" | "String" = None,
+        message_id: "Integer" = None,
+        inline_message_id: "String" = None,
+        reply_markup: "InlineKeyboardMarkup" = None,
+    ):
+        self._method = "editMessageReplyMarkup"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+        self._args['inline_message_id'] = inline_message_id
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class stopPoll(DefaultMethod):
+
+    def __init__(
+        self,
+        message_id: "Integer",
+        chat_id: "Integer" | "String",
+        reply_markup: "InlineKeyboardMarkup" = None,
+    ):
+        self._method = "stopPoll"
+        self._res_type = "Poll"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Poll":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class deleteMessage(DefaultMethod):
+
+    def __init__(
+        self,
+        message_id: "Integer",
+        chat_id: "Integer" | "String",
+    ):
+        self._method = "deleteMessage"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendSticker(DefaultMethod):
+
+    def __init__(
+        self,
+        sticker: "InputFile" | "String",
+        chat_id: "Integer" | "String",
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" | "ReplyKeyboardMarkup" | "ReplyKeyboardRemove" | "ForceReply" = None,
+    ):
+        self._method = "sendSticker"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['sticker'] = sticker
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getStickerSet(DefaultMethod):
+
+    def __init__(
+        self,
+        name: "String",
+    ):
+        self._method = "getStickerSet"
+        self._res_type = "StickerSet"
+        self._args = {}
+        self._args['name'] = name
+
+    def result(self) -> "StickerSet":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class uploadStickerFile(DefaultMethod):
+
+    def __init__(
+        self,
+        png_sticker: "InputFile",
+        user_id: "Integer",
+    ):
+        self._method = "uploadStickerFile"
+        self._res_type = "File"
+        self._args = {}
+        self._args['user_id'] = user_id
+        self._args['png_sticker'] = png_sticker
+
+    def result(self) -> "File":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class createNewStickerSet(DefaultMethod):
+
+    def __init__(
+        self,
+        emojis: "String",
+                title: "String",
+                name: "String",
+                user_id: "Integer",
+                png_sticker: "InputFile" | "String" = None,
+                tgs_sticker: "InputFile" = None,
+                webm_sticker: "InputFile" = None,
+                contains_masks: "Boolean" = None,
+                mask_position: "MaskPosition" = None,
+    ):
+        self._method = "createNewStickerSet"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['user_id'] = user_id
+        self._args['name'] = name
+        self._args['title'] = title
+        self._args['png_sticker'] = png_sticker
+        self._args['tgs_sticker'] = tgs_sticker
+        self._args['webm_sticker'] = webm_sticker
+        self._args['emojis'] = emojis
+        self._args['contains_masks'] = contains_masks
+        self._args['mask_position'] = mask_position
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class addStickerToSet(DefaultMethod):
+
+    def __init__(
+        self,
+        emojis: "String",
+                name: "String",
+                user_id: "Integer",
+                png_sticker: "InputFile" | "String" = None,
+                tgs_sticker: "InputFile" = None,
+                webm_sticker: "InputFile" = None,
+                mask_position: "MaskPosition" = None,
+    ):
+        self._method = "addStickerToSet"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['user_id'] = user_id
+        self._args['name'] = name
+        self._args['png_sticker'] = png_sticker
+        self._args['tgs_sticker'] = tgs_sticker
+        self._args['webm_sticker'] = webm_sticker
+        self._args['emojis'] = emojis
+        self._args['mask_position'] = mask_position
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setStickerPositionInSet(DefaultMethod):
+
+    def __init__(
+        self,
+        position: "Integer",
+        sticker: "String",
+    ):
+        self._method = "setStickerPositionInSet"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['sticker'] = sticker
+        self._args['position'] = position
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class deleteStickerFromSet(DefaultMethod):
+
+    def __init__(
+        self,
+        sticker: "String",
+    ):
+        self._method = "deleteStickerFromSet"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['sticker'] = sticker
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setStickerSetThumb(DefaultMethod):
+
+    def __init__(
+        self,
+        user_id: "Integer",
+        name: "String",
+        thumb: "InputFile" | "String" = None,
+    ):
+        self._method = "setStickerSetThumb"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['name'] = name
+        self._args['user_id'] = user_id
+        self._args['thumb'] = thumb
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class answerInlineQuery(DefaultMethod):
+
+    def __init__(
+        self,
+        results: "List[InlineQueryResult]",
+        inline_query_id: "String",
+        cache_time: "Integer" = None,
+        is_personal: "Boolean" = None,
+        next_offset: "String" = None,
+        switch_pm_text: "String" = None,
+        switch_pm_parameter: "String" = None,
+    ):
+        self._method = "answerInlineQuery"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['inline_query_id'] = inline_query_id
+        self._args['results'] = results
+        self._args['cache_time'] = cache_time
+        self._args['is_personal'] = is_personal
+        self._args['next_offset'] = next_offset
+        self._args['switch_pm_text'] = switch_pm_text
+        self._args['switch_pm_parameter'] = switch_pm_parameter
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class answerWebAppQuery(DefaultMethod):
+
+    def __init__(
+        self,
+        result: "InlineQueryResult",
+                web_app_query_id: "String",
+    ):
+        self._method = "answerWebAppQuery"
+        self._res_type = "SentWebAppMessage"
+        self._args = {}
+        self._args['web_app_query_id'] = web_app_query_id
+        self._args['result'] = result
+
+    def result(self) -> "SentWebAppMessage":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendInvoice(DefaultMethod):
+
+    def __init__(
+        self,
+        prices: "List[LabeledPrice]",
+                currency: "String",
+                provider_token: "String",
+                payload: "String",
+                description: "String",
+                title: "String",
+                chat_id: "Integer" | "String",
+                max_tip_amount: "Integer" = None,
+                suggested_tip_amounts: "List[Integer]" = None,
+                start_parameter: "String" = None,
+                provider_data: "String" = None,
+                photo_url: "String" = None,
+                photo_size: "Integer" = None,
+                photo_width: "Integer" = None,
+                photo_height: "Integer" = None,
+                need_name: "Boolean" = None,
+                need_phone_number: "Boolean" = None,
+                need_email: "Boolean" = None,
+                need_shipping_address: "Boolean" = None,
+                send_phone_number_to_provider: "Boolean" = None,
+                send_email_to_provider: "Boolean" = None,
+                is_flexible: "Boolean" = None,
+                disable_notification: "Boolean" = None,
+                protect_content: "Boolean" = None,
+                reply_to_message_id: "Integer" = None,
+                allow_sending_without_reply: "Boolean" = None,
+                reply_markup: "InlineKeyboardMarkup" = None,
+    ):
+        self._method = "sendInvoice"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['title'] = title
+        self._args['description'] = description
+        self._args['payload'] = payload
+        self._args['provider_token'] = provider_token
+        self._args['currency'] = currency
+        self._args['prices'] = prices
+        self._args['max_tip_amount'] = max_tip_amount
+        self._args['suggested_tip_amounts'] = suggested_tip_amounts
+        self._args['start_parameter'] = start_parameter
+        self._args['provider_data'] = provider_data
+        self._args['photo_url'] = photo_url
+        self._args['photo_size'] = photo_size
+        self._args['photo_width'] = photo_width
+        self._args['photo_height'] = photo_height
+        self._args['need_name'] = need_name
+        self._args['need_phone_number'] = need_phone_number
+        self._args['need_email'] = need_email
+        self._args['need_shipping_address'] = need_shipping_address
+        self._args['send_phone_number_to_provider'] = send_phone_number_to_provider
+        self._args['send_email_to_provider'] = send_email_to_provider
+        self._args['is_flexible'] = is_flexible
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class createInvoiceLink(DefaultMethod):
+
+    def __init__(
+        self,
+        prices: "List[LabeledPrice]",
+                currency: "String",
+                provider_token: "String",
+                payload: "String",
+                description: "String",
+                title: "String",
+                max_tip_amount: "Integer" = None,
+                suggested_tip_amounts: "List[Integer]" = None,
+                provider_data: "String" = None,
+                photo_url: "String" = None,
+                photo_size: "Integer" = None,
+                photo_width: "Integer" = None,
+                photo_height: "Integer" = None,
+                need_name: "Boolean" = None,
+                need_phone_number: "Boolean" = None,
+                need_email: "Boolean" = None,
+                need_shipping_address: "Boolean" = None,
+                send_phone_number_to_provider: "Boolean" = None,
+                send_email_to_provider: "Boolean" = None,
+                is_flexible: "Boolean" = None,
+    ):
+        self._method = "createInvoiceLink"
+        self._res_type = "String"
+        self._args = {}
+        self._args['title'] = title
+        self._args['description'] = description
+        self._args['payload'] = payload
+        self._args['provider_token'] = provider_token
+        self._args['currency'] = currency
+        self._args['prices'] = prices
+        self._args['max_tip_amount'] = max_tip_amount
+        self._args['suggested_tip_amounts'] = suggested_tip_amounts
+        self._args['provider_data'] = provider_data
+        self._args['photo_url'] = photo_url
+        self._args['photo_size'] = photo_size
+        self._args['photo_width'] = photo_width
+        self._args['photo_height'] = photo_height
+        self._args['need_name'] = need_name
+        self._args['need_phone_number'] = need_phone_number
+        self._args['need_email'] = need_email
+        self._args['need_shipping_address'] = need_shipping_address
+        self._args['send_phone_number_to_provider'] = send_phone_number_to_provider
+        self._args['send_email_to_provider'] = send_email_to_provider
+        self._args['is_flexible'] = is_flexible
+
+    def result(self) -> "String":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class answerShippingQuery(DefaultMethod):
+
+    def __init__(
+        self,
+        ok: "Boolean",
+        shipping_query_id: "String",
+        shipping_options: "List[ShippingOption]" = None,
+        error_message: "String" = None,
+    ):
+        self._method = "answerShippingQuery"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['shipping_query_id'] = shipping_query_id
+        self._args['ok'] = ok
+        self._args['shipping_options'] = shipping_options
+        self._args['error_message'] = error_message
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class answerPreCheckoutQuery(DefaultMethod):
+
+    def __init__(
+        self,
+        ok: "Boolean",
+        pre_checkout_query_id: "String",
+        error_message: "String" = None,
+    ):
+        self._method = "answerPreCheckoutQuery"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['pre_checkout_query_id'] = pre_checkout_query_id
+        self._args['ok'] = ok
+        self._args['error_message'] = error_message
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setPassportDataErrors(DefaultMethod):
+
+    def __init__(
+        self,
+        errors: "List[PassportElementError]",
+                user_id: "Integer",
+    ):
+        self._method = "setPassportDataErrors"
+        self._res_type = "Boolean"
+        self._args = {}
+        self._args['user_id'] = user_id
+        self._args['errors'] = errors
+
+    def result(self) -> "Boolean":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class sendGame(DefaultMethod):
+
+    def __init__(
+        self,
+        game_short_name: "String",
+        chat_id: "Integer",
+        disable_notification: "Boolean" = None,
+        protect_content: "Boolean" = None,
+        reply_to_message_id: "Integer" = None,
+        allow_sending_without_reply: "Boolean" = None,
+        reply_markup: "InlineKeyboardMarkup" = None,
+    ):
+        self._method = "sendGame"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['chat_id'] = chat_id
+        self._args['game_short_name'] = game_short_name
+        self._args['disable_notification'] = disable_notification
+        self._args['protect_content'] = protect_content
+        self._args['reply_to_message_id'] = reply_to_message_id
+        self._args['allow_sending_without_reply'] = allow_sending_without_reply
+        self._args['reply_markup'] = reply_markup
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class setGameScore(DefaultMethod):
+
+    def __init__(
+        self,
+        score: "Integer",
+        user_id: "Integer",
+        force: "Boolean" = None,
+        disable_edit_message: "Boolean" = None,
+        chat_id: "Integer" = None,
+        message_id: "Integer" = None,
+        inline_message_id: "String" = None,
+    ):
+        self._method = "setGameScore"
+        self._res_type = "Message"
+        self._args = {}
+        self._args['user_id'] = user_id
+        self._args['score'] = score
+        self._args['force'] = force
+        self._args['disable_edit_message'] = disable_edit_message
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+        self._args['inline_message_id'] = inline_message_id
+
+    def result(self) -> "Message":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
+
+
+class getGameHighScores(DefaultMethod):
+
+    def __init__(
+        self,
+        user_id: "Integer",
+        chat_id: "Integer" = None,
+        message_id: "Integer" = None,
+        inline_message_id: "String" = None,
+    ):
+        self._method = "getGameHighScores"
+        self._res_type = "List[GameHighScore]"
+        self._args = {}
+        self._args['user_id'] = user_id
+        self._args['chat_id'] = chat_id
+        self._args['message_id'] = message_id
+        self._args['inline_message_id'] = inline_message_id
+
+    def result(self) -> "List[GameHighScore]":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return self._res
