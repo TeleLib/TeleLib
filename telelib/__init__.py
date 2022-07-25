@@ -147,7 +147,7 @@ class TeleLib:
     class Bot:
         @classmethod
         def start(cls):
-            TeleLib.logger("Starting TeleLib Bot")
+            TeleLib.logger("Starting TeleLib")
 
     class Telegram:
         ...
@@ -167,3 +167,7 @@ class TeleLib:
         @staticmethod
         def CodeGeneratorRun():
             return CodeGenerator().run("min.json")
+
+    def start(self):
+        TeleLib.logger("Starting TeleLib")
+        self.Bot.start()
