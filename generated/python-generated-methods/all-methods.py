@@ -191,8 +191,8 @@ class sendMessage(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         text: "String",
+        chat_id: "Integer" | "String",
         parse_mode: "String" = None,
         entities: "List[MessageEntity]" = None,
         disable_web_page_preview: "Boolean" = None,
@@ -231,11 +231,11 @@ class forwardMessage(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
+        message_id: "Integer",
         from__chat_id: "Integer" | "String",
+        chat_id: "Integer" | "String",
         disable_notification: "Boolean" = None,
         protect_content: "Boolean" = None,
-        message_id: "Integer",
     ):
         self._method = "forwardMessage"
         self._res_type = "Message"
@@ -263,9 +263,9 @@ class copyMessage(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
-        from__chat_id: "Integer" | "String",
         message_id: "Integer",
+        from__chat_id: "Integer" | "String",
+        chat_id: "Integer" | "String",
         caption: "String" = None,
         parse_mode: "String" = None,
         caption_entities: "List[MessageEntity]" = None,
@@ -304,8 +304,8 @@ class sendPhoto(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         photo: "InputFile" | "String",
+        chat_id: "Integer" | "String",
         caption: "String" = None,
         parse_mode: "String" = None,
         caption_entities: "List[MessageEntity]" = None,
@@ -347,8 +347,8 @@ class sendAudio(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         audio: "InputFile" | "String",
+        chat_id: "Integer" | "String",
         caption: "String" = None,
         parse_mode: "String" = None,
         caption_entities: "List[MessageEntity]" = None,
@@ -396,8 +396,8 @@ class sendDocument(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         document: "InputFile" | "String",
+        chat_id: "Integer" | "String",
         thumb: "InputFile" | "String" = None,
         caption: "String" = None,
         parse_mode: "String" = None,
@@ -442,8 +442,8 @@ class sendVideo(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         video: "InputFile" | "String",
+        chat_id: "Integer" | "String",
         duration: "Integer" = None,
         width: "Integer" = None,
         height: "Integer" = None,
@@ -493,8 +493,8 @@ class sendAnimation(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         animation: "InputFile" | "String",
+        chat_id: "Integer" | "String",
         duration: "Integer" = None,
         width: "Integer" = None,
         height: "Integer" = None,
@@ -545,8 +545,8 @@ class sendVoice(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         voice: "InputFile" | "String",
+        chat_id: "Integer" | "String",
         caption: "String" = None,
         parse_mode: "String" = None,
         caption_entities: "List[MessageEntity]" = None,
@@ -587,8 +587,8 @@ class sendVideoNote(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         video_note: "InputFile" | "String",
+        chat_id: "Integer" | "String",
         duration: "Integer" = None,
         length: "Integer" = None,
         thumb: "InputFile" | "String" = None,
@@ -628,8 +628,8 @@ class sendMediaGroup(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         media: "List[InputMediaAudio]" | "List[InputMediaDocument]" | "List[InputMediaPhoto]" | "List[InputMediaVideo]",
+        chat_id: "Integer" | "String",
         disable_notification: "Boolean" = None,
         protect_content: "Boolean" = None,
         reply_to_message_id: "Integer" = None,
@@ -659,9 +659,9 @@ class sendLocation(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
-        latitude: "Float",
         longitude: "Float",
+        latitude: "Float",
+        chat_id: "Integer" | "String",
         horizontal_accuracy: "Float" = None,
         live_period: "Integer" = None,
         heading: "Integer" = None,
@@ -705,11 +705,11 @@ class editMessageLiveLocation(DefaultMethod):
 
     def __init__(
         self,
+        longitude: "Float",
+        latitude: "Float",
         chat_id: "Integer" | "String" = None,
         message_id: "Integer" = None,
         inline_message_id: "String" = None,
-        latitude: "Float",
-        longitude: "Float",
         horizontal_accuracy: "Float" = None,
         heading: "Integer" = None,
         proximity_alert_radius: "Integer" = None,
@@ -771,11 +771,11 @@ class sendVenue(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
-        latitude: "Float",
-        longitude: "Float",
-        title: "String",
         address: "String",
+        title: "String",
+        longitude: "Float",
+        latitude: "Float",
+        chat_id: "Integer" | "String",
         foursquare_id: "String" = None,
         foursquare_type: "String" = None,
         google_place_id: "String" = None,
@@ -818,9 +818,9 @@ class sendContact(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
-        phone_number: "String",
         first_name: "String",
+        phone_number: "String",
+        chat_id: "Integer" | "String",
         last_name: "String" = None,
         vcard: "String" = None,
         disable_notification: "Boolean" = None,
@@ -857,9 +857,9 @@ class sendPoll(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
-        question: "String",
         options: "List[String]",
+        question: "String",
+        chat_id: "Integer" | "String",
         is_anonymous: "Boolean" = None,
         type: "String" = None,
         allows_multiple_answers: "Boolean" = None,
@@ -950,8 +950,8 @@ class sendChatAction(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         action: "String",
+                chat_id: "Integer" | "String",
     ):
         self._method = "sendChatAction"
         self._res_type = "Boolean"
@@ -1034,8 +1034,8 @@ class banChatMember(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         user_id: "Integer",
+        chat_id: "Integer" | "String",
         until_date: "Integer" = None,
         revoke_messages: "Boolean" = None,
     ):
@@ -1068,8 +1068,8 @@ class unbanChatMember(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         user_id: "Integer",
+        chat_id: "Integer" | "String",
         only_if_banned: "Boolean" = None,
     ):
         self._method = "unbanChatMember"
@@ -1096,9 +1096,9 @@ class restrictChatMember(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
-        user_id: "Integer",
         permissions: "ChatPermissions",
+        user_id: "Integer",
+        chat_id: "Integer" | "String",
         until_date: "Integer" = None,
     ):
         self._method = "restrictChatMember"
@@ -1126,8 +1126,8 @@ class promoteChatMember(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         user_id: "Integer",
+        chat_id: "Integer" | "String",
         is_anonymous: "Boolean" = None,
         can_manage_chat: "Boolean" = None,
         can_post_messages: "Boolean" = None,
@@ -1172,9 +1172,9 @@ class setChatAdministratorCustomTitle(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
-        user_id: "Integer",
         custom_title: "String",
+        user_id: "Integer",
+        chat_id: "Integer" | "String",
     ):
         self._method = "setChatAdministratorCustomTitle"
         self._res_type = "Boolean"
@@ -1201,8 +1201,8 @@ class banChatSenderChat(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         sender_chat_id: "Integer",
+        chat_id: "Integer" | "String",
     ):
         self._method = "banChatSenderChat"
         self._res_type = "Boolean"
@@ -1226,8 +1226,8 @@ class unbanChatSenderChat(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         sender_chat_id: "Integer",
+        chat_id: "Integer" | "String",
     ):
         self._method = "unbanChatSenderChat"
         self._res_type = "Boolean"
@@ -1252,8 +1252,8 @@ class setChatPermissions(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         permissions: "ChatPermissions",
+        chat_id: "Integer" | "String",
     ):
         self._method = "setChatPermissions"
         self._res_type = "Boolean"
@@ -1335,8 +1335,8 @@ class editChatInviteLink(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         invite_link: "String",
+        chat_id: "Integer" | "String",
         name: "String" = None,
         expire_date: "Integer" = None,
         member_limit: "Integer" = None,
@@ -1370,8 +1370,8 @@ class revokeChatInviteLink(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         invite_link: "String",
+        chat_id: "Integer" | "String",
     ):
         self._method = "revokeChatInviteLink"
         self._res_type = "ChatInviteLink"
@@ -1395,8 +1395,8 @@ class approveChatJoinRequest(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         user_id: "Integer",
+        chat_id: "Integer" | "String",
     ):
         self._method = "approveChatJoinRequest"
         self._res_type = "Boolean"
@@ -1420,8 +1420,8 @@ class declineChatJoinRequest(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         user_id: "Integer",
+        chat_id: "Integer" | "String",
     ):
         self._method = "declineChatJoinRequest"
         self._res_type = "Boolean"
@@ -1446,8 +1446,8 @@ class setChatPhoto(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         photo: "InputFile",
+        chat_id: "Integer" | "String",
     ):
         self._method = "setChatPhoto"
         self._res_type = "Boolean"
@@ -1494,8 +1494,8 @@ class setChatTitle(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         title: "String",
+        chat_id: "Integer" | "String",
     ):
         self._method = "setChatTitle"
         self._res_type = "Boolean"
@@ -1546,8 +1546,8 @@ class pinChatMessage(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         message_id: "Integer",
+        chat_id: "Integer" | "String",
         disable_notification: "Boolean" = None,
     ):
         self._method = "pinChatMessage"
@@ -1713,8 +1713,8 @@ class getChatMember(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         user_id: "Integer",
+        chat_id: "Integer" | "String",
     ):
         self._method = "getChatMember"
         self._res_type = "ChatMember"
@@ -1740,8 +1740,8 @@ class setChatStickerSet(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         sticker_set_name: "String",
+        chat_id: "Integer" | "String",
     ):
         self._method = "setChatStickerSet"
         self._res_type = "Boolean"
@@ -1989,10 +1989,10 @@ class editMessageText(DefaultMethod):
 
     def __init__(
         self,
+        text: "String",
         chat_id: "Integer" | "String" = None,
         message_id: "Integer" = None,
         inline_message_id: "String" = None,
-        text: "String",
         parse_mode: "String" = None,
         entities: "List[MessageEntity]" = None,
         disable_web_page_preview: "Boolean" = None,
@@ -2065,10 +2065,10 @@ class editMessageMedia(DefaultMethod):
 
     def __init__(
         self,
+        media: "InputMedia",
         chat_id: "Integer" | "String" = None,
         message_id: "Integer" = None,
         inline_message_id: "String" = None,
-        media: "InputMedia",
         reply_markup: "InlineKeyboardMarkup" = None,
     ):
         self._method = "editMessageMedia"
@@ -2122,8 +2122,8 @@ class stopPoll(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         message_id: "Integer",
+        chat_id: "Integer" | "String",
         reply_markup: "InlineKeyboardMarkup" = None,
     ):
         self._method = "stopPoll"
@@ -2157,8 +2157,8 @@ class deleteMessage(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         message_id: "Integer",
+        chat_id: "Integer" | "String",
     ):
         self._method = "deleteMessage"
         self._res_type = "Boolean"
@@ -2181,8 +2181,8 @@ class sendSticker(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
         sticker: "InputFile" | "String",
+        chat_id: "Integer" | "String",
         disable_notification: "Boolean" = None,
         protect_content: "Boolean" = None,
         reply_to_message_id: "Integer" = None,
@@ -2237,8 +2237,8 @@ class uploadStickerFile(DefaultMethod):
 
     def __init__(
         self,
-        user_id: "Integer",
         png_sticker: "InputFile",
+        user_id: "Integer",
     ):
         self._method = "uploadStickerFile"
         self._res_type = "File"
@@ -2262,15 +2262,15 @@ class createNewStickerSet(DefaultMethod):
 
     def __init__(
         self,
-        user_id: "Integer",
-        name: "String",
-        title: "String",
-        png_sticker: "InputFile" | "String" = None,
-        tgs_sticker: "InputFile" = None,
-        webm_sticker: "InputFile" = None,
         emojis: "String",
-        contains_masks: "Boolean" = None,
-        mask_position: "MaskPosition" = None,
+                title: "String",
+                name: "String",
+                user_id: "Integer",
+                png_sticker: "InputFile" | "String" = None,
+                tgs_sticker: "InputFile" = None,
+                webm_sticker: "InputFile" = None,
+                contains_masks: "Boolean" = None,
+                mask_position: "MaskPosition" = None,
     ):
         self._method = "createNewStickerSet"
         self._res_type = "Boolean"
@@ -2303,13 +2303,13 @@ class addStickerToSet(DefaultMethod):
 
     def __init__(
         self,
-        user_id: "Integer",
-        name: "String",
-        png_sticker: "InputFile" | "String" = None,
-        tgs_sticker: "InputFile" = None,
-        webm_sticker: "InputFile" = None,
         emojis: "String",
-        mask_position: "MaskPosition" = None,
+                name: "String",
+                user_id: "Integer",
+                png_sticker: "InputFile" | "String" = None,
+                tgs_sticker: "InputFile" = None,
+                webm_sticker: "InputFile" = None,
+                mask_position: "MaskPosition" = None,
     ):
         self._method = "addStickerToSet"
         self._res_type = "Boolean"
@@ -2336,8 +2336,8 @@ class setStickerPositionInSet(DefaultMethod):
 
     def __init__(
         self,
-        sticker: "String",
         position: "Integer",
+        sticker: "String",
     ):
         self._method = "setStickerPositionInSet"
         self._res_type = "Boolean"
@@ -2382,8 +2382,8 @@ class setStickerSetThumb(DefaultMethod):
 
     def __init__(
         self,
-        name: "String",
         user_id: "Integer",
+        name: "String",
         thumb: "InputFile" | "String" = None,
     ):
         self._method = "setStickerSetThumb"
@@ -2408,8 +2408,8 @@ class answerInlineQuery(DefaultMethod):
 
     def __init__(
         self,
-        inline_query_id: "String",
         results: "List[InlineQueryResult]",
+        inline_query_id: "String",
         cache_time: "Integer" = None,
         is_personal: "Boolean" = None,
         next_offset: "String" = None,
@@ -2443,8 +2443,8 @@ class answerWebAppQuery(DefaultMethod):
 
     def __init__(
         self,
-        web_app_query_id: "String",
         result: "InlineQueryResult",
+                web_app_query_id: "String",
     ):
         self._method = "answerWebAppQuery"
         self._res_type = "SentWebAppMessage"
@@ -2466,33 +2466,33 @@ class sendInvoice(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer" | "String",
-        title: "String",
-        description: "String",
-        payload: "String",
-        provider_token: "String",
-        currency: "String",
         prices: "List[LabeledPrice]",
-        max_tip_amount: "Integer" = None,
-        suggested_tip_amounts: "List[Integer]" = None,
-        start_parameter: "String" = None,
-        provider_data: "String" = None,
-        photo_url: "String" = None,
-        photo_size: "Integer" = None,
-        photo_width: "Integer" = None,
-        photo_height: "Integer" = None,
-        need_name: "Boolean" = None,
-        need_phone_number: "Boolean" = None,
-        need_email: "Boolean" = None,
-        need_shipping_address: "Boolean" = None,
-        send_phone_number_to_provider: "Boolean" = None,
-        send_email_to_provider: "Boolean" = None,
-        is_flexible: "Boolean" = None,
-        disable_notification: "Boolean" = None,
-        protect_content: "Boolean" = None,
-        reply_to_message_id: "Integer" = None,
-        allow_sending_without_reply: "Boolean" = None,
-        reply_markup: "InlineKeyboardMarkup" = None,
+                currency: "String",
+                provider_token: "String",
+                payload: "String",
+                description: "String",
+                title: "String",
+                chat_id: "Integer" | "String",
+                max_tip_amount: "Integer" = None,
+                suggested_tip_amounts: "List[Integer]" = None,
+                start_parameter: "String" = None,
+                provider_data: "String" = None,
+                photo_url: "String" = None,
+                photo_size: "Integer" = None,
+                photo_width: "Integer" = None,
+                photo_height: "Integer" = None,
+                need_name: "Boolean" = None,
+                need_phone_number: "Boolean" = None,
+                need_email: "Boolean" = None,
+                need_shipping_address: "Boolean" = None,
+                send_phone_number_to_provider: "Boolean" = None,
+                send_email_to_provider: "Boolean" = None,
+                is_flexible: "Boolean" = None,
+                disable_notification: "Boolean" = None,
+                protect_content: "Boolean" = None,
+                reply_to_message_id: "Integer" = None,
+                allow_sending_without_reply: "Boolean" = None,
+                reply_markup: "InlineKeyboardMarkup" = None,
     ):
         self._method = "sendInvoice"
         self._res_type = "Message"
@@ -2539,26 +2539,26 @@ class createInvoiceLink(DefaultMethod):
 
     def __init__(
         self,
-        title: "String",
-        description: "String",
-        payload: "String",
-        provider_token: "String",
-        currency: "String",
         prices: "List[LabeledPrice]",
-        max_tip_amount: "Integer" = None,
-        suggested_tip_amounts: "List[Integer]" = None,
-        provider_data: "String" = None,
-        photo_url: "String" = None,
-        photo_size: "Integer" = None,
-        photo_width: "Integer" = None,
-        photo_height: "Integer" = None,
-        need_name: "Boolean" = None,
-        need_phone_number: "Boolean" = None,
-        need_email: "Boolean" = None,
-        need_shipping_address: "Boolean" = None,
-        send_phone_number_to_provider: "Boolean" = None,
-        send_email_to_provider: "Boolean" = None,
-        is_flexible: "Boolean" = None,
+                currency: "String",
+                provider_token: "String",
+                payload: "String",
+                description: "String",
+                title: "String",
+                max_tip_amount: "Integer" = None,
+                suggested_tip_amounts: "List[Integer]" = None,
+                provider_data: "String" = None,
+                photo_url: "String" = None,
+                photo_size: "Integer" = None,
+                photo_width: "Integer" = None,
+                photo_height: "Integer" = None,
+                need_name: "Boolean" = None,
+                need_phone_number: "Boolean" = None,
+                need_email: "Boolean" = None,
+                need_shipping_address: "Boolean" = None,
+                send_phone_number_to_provider: "Boolean" = None,
+                send_email_to_provider: "Boolean" = None,
+                is_flexible: "Boolean" = None,
     ):
         self._method = "createInvoiceLink"
         self._res_type = "String"
@@ -2601,8 +2601,8 @@ class answerShippingQuery(DefaultMethod):
 
     def __init__(
         self,
-        shipping_query_id: "String",
         ok: "Boolean",
+        shipping_query_id: "String",
         shipping_options: "List[ShippingOption]" = None,
         error_message: "String" = None,
     ):
@@ -2633,8 +2633,8 @@ class answerPreCheckoutQuery(DefaultMethod):
 
     def __init__(
         self,
-        pre_checkout_query_id: "String",
         ok: "Boolean",
+        pre_checkout_query_id: "String",
         error_message: "String" = None,
     ):
         self._method = "answerPreCheckoutQuery"
@@ -2667,8 +2667,8 @@ class setPassportDataErrors(DefaultMethod):
 
     def __init__(
         self,
-        user_id: "Integer",
         errors: "List[PassportElementError]",
+                user_id: "Integer",
     ):
         self._method = "setPassportDataErrors"
         self._res_type = "Boolean"
@@ -2690,8 +2690,8 @@ class sendGame(DefaultMethod):
 
     def __init__(
         self,
-        chat_id: "Integer",
         game_short_name: "String",
+        chat_id: "Integer",
         disable_notification: "Boolean" = None,
         protect_content: "Boolean" = None,
         reply_to_message_id: "Integer" = None,
@@ -2727,8 +2727,8 @@ class setGameScore(DefaultMethod):
 
     def __init__(
         self,
-        user_id: "Integer",
         score: "Integer",
+        user_id: "Integer",
         force: "Boolean" = None,
         disable_edit_message: "Boolean" = None,
         chat_id: "Integer" = None,
