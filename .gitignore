@@ -22,3 +22,8 @@ __pycache__/*
 .pip-selfcheck.json
 Pipfile.lock
 Pipfile.lock.*
+
+TOKEN
+
+logs/*
+*.log
