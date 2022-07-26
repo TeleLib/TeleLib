@@ -48,7 +48,7 @@ class Types:
 
     class DefaultMethod:
         def __init__(self, *args, **kwargs):
-            ...
+            self._called = False
 
         def _call(self):
             return (self._method, self._args)
@@ -289,3 +289,8 @@ class TypeName(Types.DefaultMethod):
             file.write(self._format_code("\n\n".join(self.all_classes)))
 
             print(f"written at {dir_path}telegram.py")
+
+        with open(f"{telelib.main_path}/telelib/telegram.py", "w") as file:
+            file.write(self._format_code("\n\n".join(self.all_classes)))
+
+            print(f"written at {telelib.main_path}/telelib/telegram.py")

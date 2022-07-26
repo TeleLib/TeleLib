@@ -23,7 +23,7 @@ class Types:
 
     class DefaultMethod:
         def __init__(self, *args, **kwargs):
-            ...
+            self._called = False
 
         def _call(self):
             return (self._method, self._args)

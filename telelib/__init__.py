@@ -1,19 +1,19 @@
 __VERSION__ = open('VERSION').read().strip()
 
-__all__ = ["TeleLib", "main_path"]
+__all__ = ["TeleLib", "main_path", "telegram"]
 
 import asyncio
 import datetime
 import json
 import os
 import logging as lg
-from typing import Any, Optional, Tuple, Union
+from typing import Optional, Tuple, Union
 import coloredlogs
 import httpx
 from thread_py import ThreadPy
 from telelib.tools.code_generator import CodeGenerator
 from telelib.tools.scraper import Scraper
-from telelib.telegram import Update, getUpdates
+from telelib.telegram import getUpdates
 import telelib.telegram as telegram
 
 main_path = os.path.realpath(
@@ -371,11 +371,10 @@ class TeleLib:
             TeleLib.logger("Starting TeleLib Bot Instance")
 
             while TeleLib.is_running:
-                TeleLib.logger("Looping Over")
                 await asyncio.sleep(0.01)
                 await TeleLib.tg(updates := getUpdates(offset=offset))
-                for update in updates.result():
-                    offset = update.update_id + 1
+
+                def _(update):
                     for event, event_func in cls.event_handlers.items():
                         for update_type in Telegram.update_types:
                             if type(getattr(update, update_type)) == event:
@@ -390,10 +389,22 @@ class TeleLib:
                                     )
                                 except Exception as err:
                                     print(err)
-                                break
 
-                if 'main' in cls.event_handlers:
-                    await cls.event_handlers['main']()
+                                return True
+
+                for update in updates.result():
+                    offset = update.update_id + 1
+                    _(update)
+
+                    if 'main' in cls.event_handlers:
+                        ThreadPy.create_and_start_thread(
+                            name=f"{update.update_id}-Thread",
+                            target=TeleLib.AsyncRun,
+                            args=(
+                                cls.event_handlers['main'],
+                                update
+                            )
+                        )
 
     # Extra Python Tools
 
