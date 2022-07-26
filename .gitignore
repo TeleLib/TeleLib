@@ -27,3 +27,6 @@ TOKEN
 
 logs/*
 *.log
+
+build/
+dist/
