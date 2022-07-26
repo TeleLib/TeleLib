@@ -1,11 +1,14 @@
-__VERSION__ = open('VERSION').read().strip()
+import os
+if os.path.exists('VERSION'):
+    __VERSION__ = open('VERSION').read().strip()
+else:
+    __VERSION__ = "installed-but-no-version-file"
 
 __all__ = ["TeleLib", "main_path", "telegram"]
 
 import asyncio
 import datetime
 import json
-import os
 import logging as lg
 from typing import Optional, Tuple, Union
 import coloredlogs
