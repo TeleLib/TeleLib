@@ -16,9 +16,6 @@ class Types:
             return iter(self._d)
 
         def __getattr__(self, __name: str) -> Any:
-            if hasattr(self, __name):
-                return self[__name]
-
             return self._d.get(__name, None)
 
         def __getitem__(self, name):
@@ -26,7 +23,7 @@ class Types:
 
     class DefaultMethod:
         def __init__(self, *args, **kwargs):
-            ...
+            self._called = False
 
         def _call(self):
             return (self._method, self._args)
