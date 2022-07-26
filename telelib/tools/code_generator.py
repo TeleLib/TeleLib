@@ -17,23 +17,63 @@ https://core.telegram.org/bots/api documentation.
 class CodeGenerator:
     def __init__(self):
         self.Scheme = None
+        self.core_types = {
+            "Integer": "int",
+            "String": "str",
+            "Boolean": "bool",
+            "Float": 'float',
+        }
         self.all_classes = [
-            "from typing import List",
-            "from telelib.bot import DefaultType",
-            "from telelib.bot import DefaultMethod",
+            "from typing import List, Union, Optional, Any",
+            '''
+class Types:
+    class DefaultType:
+        def __init__(self, d):
+            self._d = d
+
+        def __repr__(self) -> str:
+            string = f"{self.__class__.__name__}("
+            for k, v in self._d.items():
+                string += f"{k}={repr(v)}, "
+            return string+")"
+
+        def __iter__(self):
+            return iter(self._d)
+
+        def __getattr__(self, __name: str) -> Any:
+            return self._d.get(__name, None)
+
+        def __getitem__(self, name):
+            return self._d.get(name, None)
+
+    class DefaultMethod:
+        def __init__(self, *args, **kwargs):
+            ...
+
+        def _call(self):
+            return (self._method, self._args)
+
+    @staticmethod
+    def Typify(data, type_, recursive=True):
+        if recursive:
+            if isinstance(data, list):
+                return [Types.Typify(d, type_) for d in data]
+
+        if data is not None:
+            return type_(data)
+
+        return None
+            ''',
             self._gen_core_types(),
         ]
 
     def _gen_core_types(self):
-        core_types = {
-            "Integer": "int",
-            "String": "str",
-            # "Boolean": "bool",
-            "Float": 'float',
-        }
         generated_classes = []
-        for key, value in core_types.items():
-            generated_classes.append(f"class {key}({value}):\n\t...")
+        for key, value in self.core_types.copy().items():
+            if key != 'Boolean':
+                # Boolean is a special case since
+                # it's not a type amd we can't inherit from it
+                generated_classes.append(f"class {key}({value}):\n\t...")
 
         generated_classes.append("Boolean = bool")
 
@@ -41,7 +81,7 @@ class CodeGenerator:
 
     def _gen_types(self):
         type_stub = """
-class TypeName(DefaultType):
+class TypeName(Types.DefaultType):
     Props
 """
         for _, d in self.Scheme['types'].items():
@@ -67,18 +107,31 @@ class TypeName(DefaultType):
                         if "Array of" in i:
                             i = f"List[{i.split('Array of ')[-1]}]"
                         _types.append(i)
+                    if len(_types) > 1:
+                        t = "Union[" + \
+                            (", ".join(map(lambda x: f'"{x}"', _types))) + "]"
+                    else:
+                        t = (", ".join(map(lambda x: f'"{x}"', _types)))
                     if not field['required']:
-                        _types.append("None")
-                    t = "|".join(map(lambda x: f'"{x}"', _types))
+                        t = f"Optional[{t}]"
                     _safe_name = str(field['name']).replace('from', 'from_')
                     d = "\n\t\t".join(wrap(field['description'], 60))
+                    returnable = f"self._d.get(\"{field['name']}\", None)"
+                    for i in field['types']:
+                        returnable = (
+                            f"Types.Typify("
+                            f"\n\t\t{returnable},"
+                            f"\n\t\t{i.split('Array of ')[-1]}"
+                            f"\n\t)"
+                        )
+
                     props.append(
                         f"\n\n\n\n\n\t@property"
                         f"\n\tdef {_safe_name}("
                         f"\n\tself"
                         f"\n\t)"
                         f" -> {t}:"
-                        f"\n\t\treturn self._d[\"{field['name']}\"]"
+                        f"\n\t\treturn {returnable}"
                     )
 
                 class_generated = class_generated.replace(
@@ -97,22 +150,25 @@ class TypeName(DefaultType):
     def _gen_methods(self):
         type_stub = """
 Summery
-class TypeName(DefaultMethod):
+class TypeName(Types.DefaultMethod):
 
     def __init__(
         self,
         ARGS
     ):
+        super().__init__(
+            INTSUPAR
+        )
         self._method = "TypeName"
         self._res_type = RESULT_TYPE
         self._args = {}
         ARGS_PARSED
 
-    def result(self) -> RESULT_TYPE:
+    def result(self, update_type=RESULT_TYPE_RES) -> RESULT_TYPE:
         if not self._called:
             raise Exception("You have to call the method first")
 
-        return self._res
+        return Types.Typify(self._res, update_type)
 
 """
 
@@ -135,6 +191,7 @@ class TypeName(DefaultMethod):
             # )
 
             props = []
+            super_props = []
             props_list = []
             if "fields" in d:
                 for field in d["fields"]:
@@ -145,7 +202,13 @@ class TypeName(DefaultMethod):
                         if "Array of" in i:
                             i = f"List[{i.split('Array of ')[-1]}]"
                         _types.append(i)
-                    t = "|".join(map(lambda x: f'"{x}"', _types))
+                    if len(_types) > 1:
+                        t = "Union[" + \
+                            (", ".join(map(lambda x: f'"{x}"', _types))) + "]"
+                    else:
+                        t = (", ".join(map(lambda x: f'"{x}"', _types)))
+                    if not field['required']:
+                        t = f"Optional[{t}]"
                     _safe_name = str(field['name']).replace('from', 'from_')
                     if field['required']:
                         props.insert(
@@ -157,6 +220,7 @@ class TypeName(DefaultMethod):
                         )
                     props_list.append(
                         f"self._args['{field['name']}'] = {_safe_name}")
+                    super_props.append(_safe_name)
 
                 class_generated = class_generated.replace(
                     'ARGS_PARSED',
@@ -165,6 +229,10 @@ class TypeName(DefaultMethod):
                 class_generated = class_generated.replace(
                     'ARGS',
                     "\n\t\t".join(props)
+                )
+                class_generated = class_generated.replace(
+                    "INTSUPAR",
+                    ",\n\t\t".join(super_props)
                 )
 
             else:
@@ -183,6 +251,10 @@ class TypeName(DefaultMethod):
             if "Array of" in res_type:
                 res_type = f"List[{res_type.split('Array of ')[-1]}]"
 
+            class_generated = class_generated.replace(
+                'RESULT_TYPE_RES',
+                d["returns"][0].split('Array of ')[-1]
+            )
             class_generated = class_generated.replace(
                 'RESULT_TYPE',
                 f'"{res_type}"'
