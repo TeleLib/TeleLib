@@ -16,9 +16,6 @@ class Types:
             return iter(self._d)
 
         def __getattr__(self, __name: str) -> Any:
-            if hasattr(self, __name):
-                return self[__name]
-
             return self._d.get(__name, None)
 
         def __getitem__(self, name):
