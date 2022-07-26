@@ -8,6 +8,18 @@ A Telegram Library that uses Python to generate Wrappers on Any language you lik
 
 ---
 
+## installation
+
+```bash
+pip install telelib
+```
+or if you're on node
+```bash
+npm install @TeleLib/TeleLib
+# OR
+yarn add @TeleLib/TeleLib
+```
+
 ## more info
 
 - for more examples visit [examples](/examples)
