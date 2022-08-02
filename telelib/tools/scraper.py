@@ -3,8 +3,27 @@ import telelib
 import re
 import string
 
-import requests
-from bs4 import BeautifulSoup
+try:
+    import requests
+except ImportError:
+    try:
+        import pip
+        pip.main(['install', 'requests'])
+        import requests
+    except ImportError:
+        print("Didn't find requests, please install it")
+        exit(1)
+try:
+    from bs4 import BeautifulSoup
+except ImportError:
+    try:
+        import pip
+        pip.main(['install', 'bs4'])
+        from bs4 import BeautifulSoup
+    except ImportError:
+        print("Didn't find bs4, please install it")
+        exit(1)
+
 from bs4.element import Tag
 
 

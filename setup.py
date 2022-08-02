@@ -1,16 +1,20 @@
 import setuptools
 
+import telelib
+
 setuptools.setup(
     name="telelib",
     description="A Telegram Wrapper Written in ?",
     author="Mohammad Mahdi Afshar",
     author_email="me@mamad.dev",
-    version=open("VERSION").read().strip(),
+    version=telelib.__VERSION__,
     license="The Unlicensed",
     packages=setuptools.find_packages(),
-    dependencies=[
+    requires=[
         "thread_py",
-        "xhttp",
+        "httpx",
+        "requests",
+        "coloredlogs"
     ],
     classifiers=[
         "Intended Audience :: Developers",

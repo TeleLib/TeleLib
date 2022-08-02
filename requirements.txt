@@ -1,1 +1,4 @@
 thread_py
+requests
+httpx
+coloredlogs

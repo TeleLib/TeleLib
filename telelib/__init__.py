@@ -2,7 +2,7 @@ import os
 if os.path.exists('VERSION'):
     __VERSION__ = open('VERSION').read().strip()
 else:
-    __VERSION__ = "installed-but-no-version-file"
+    __VERSION__ = "6.0.010"
 
 __all__ = (
     '__VERSION__',
@@ -16,12 +16,44 @@ import asyncio
 import datetime
 import json
 import logging as lg
-import httpx
-import coloredlogs
+
+try:
+    import httpx
+except ImportError:
+    try:
+        import pip
+        pip.main(['install', 'httpx'])
+        import httpx
+    except ImportError:
+        print("Didn't find httpx, please install it")
+        exit(1)
+
+try:
+    import coloredlogs
+except ImportError:
+    try:
+        import pip
+        pip.main(['install', 'coloredlogs'])
+        import coloredlogs
+    except ImportError:
+        print("Didn't find coloredlogs, please install it")
+        exit(1)
+
 
 from typing import Any, Callable, Coroutine, \
     List, Mapping, Optional, Tuple, Union
-from thread_py import ThreadPy
+
+try:
+    from thread_py import ThreadPy
+except ImportError:
+    try:
+        import pip
+        pip.main(['install', 'thread_py'])
+        from thread_py import ThreadPy
+    except ImportError:
+        print("Didn't find thread_py, please install it")
+        exit(1)
+
 from telelib.tools.code_generator import CodeGenerator
 from telelib.tools.scraper import Scraper
 from telelib.telegram import getUpdates
