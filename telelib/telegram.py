@@ -24,12 +24,15 @@ class Types:
     class DefaultMethod:
         def __init__(self, *args, **kwargs):
             self._called = False
+            self._method: str = ""
+            self._args = {}
+            self._res: Any = None
 
         def _call(self):
             return (self._method, self._args)
 
     @staticmethod
-    def Typify(data, type_, recursive=True):
+    def Typify(data, type_, recursive=True) -> Any:
         if recursive:
             if isinstance(data, list):
                 return [Types.Typify(d, type_) for d in data]

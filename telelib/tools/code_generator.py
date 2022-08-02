@@ -49,6 +49,9 @@ class Types:
     class DefaultMethod:
         def __init__(self, *args, **kwargs):
             self._called = False
+            self._method: str = ""
+            self._args = {}
+            self._res = None
 
         def _call(self):
             return (self._method, self._args)

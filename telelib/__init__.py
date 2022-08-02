@@ -4,27 +4,38 @@ if os.path.exists('VERSION'):
 else:
     __VERSION__ = "installed-but-no-version-file"
 
-__all__ = ["TeleLib", "main_path", "telegram"]
+__all__ = (
+    '__VERSION__',
+    "TeleLib",
+    "Logger",
+    "telegram",
+    "Telegram",
+)
 
 import asyncio
 import datetime
 import json
 import logging as lg
-from typing import Optional, Tuple, Union
-import coloredlogs
 import httpx
+import coloredlogs
+
+from typing import Any, Callable, Coroutine, \
+    List, Mapping, Optional, Tuple, Union
 from thread_py import ThreadPy
 from telelib.tools.code_generator import CodeGenerator
 from telelib.tools.scraper import Scraper
 from telelib.telegram import getUpdates
-import telelib.telegram as telegram
+import telelib.telegram as _telegram
 
 main_path = os.path.realpath(
     os.path.dirname(__file__) + '/../'
 )
 
 
-class Tools:
+telegram = _telegram
+
+
+class _Tools:
     documents_path = "https://core.telegram.org/bots/api"
 
     @staticmethod
@@ -37,8 +48,8 @@ class Tools:
 
 
 class Logger:
-    _instance = None
-    _ = None
+    _instance: "Logger" = None  # type: ignore
+    _: lg.Logger = None  # type: ignore
 
     class LogLevel:
         DEBUG = lg.DEBUG
@@ -140,8 +151,8 @@ class Telegram:
         def __repr__(self) -> str:
             return f"{self.multipart_data}, {self.json_parameters}"
 
-    USER_AGENT = "TelegramBotAPI/1.0"
-    update_types = [
+    USER_AGENT: str = "TelegramBotAPI/1.0"
+    update_types: List[str] = [
         'message',
         'edited_message',
         'channel_post',
@@ -158,12 +169,11 @@ class Telegram:
         'chat_join_request',
     ]
 
-    _instance = None
-    token = None
-    api_url = None
-    client_args = None
-    client = None
-    me = None
+    _instance: "Telegram" = None  # type: ignore
+    token: str = None  # type: ignore
+    api_url: str = None  # type: ignore
+    client_args: Mapping[str, Any] = {}
+    client: httpx.AsyncClient = None  # type: ignore
 
     def __repr__(self) -> str:
         return f"TelegramAPI(id={id(self)})"
@@ -224,7 +234,7 @@ class Telegram:
         url: str,
         method: str,
         request_data: Optional[RequestData] = None,
-    ) -> Tuple[int, bytes]:
+    ) -> Tuple[int, dict]:
         if cls.client is None:
             cls.client = await cls.construct()
 
@@ -250,10 +260,10 @@ class Telegram:
         except httpx.HTTPError as err:
             raise Exception(f"httpx HTTPError: {err}")
 
-        return res.status_code, (json.loads(res.content))
+        return res.status_code, json.loads(res.content)
 
     @classmethod
-    async def is_ok(cls, res: Tuple[int, dict]) -> bool:
+    async def is_ok(cls, res: Tuple[int, dict]) -> Union[bool, dict]:
         if res[0] == 200:
             if res[1]["ok"]:
                 return res[1]['result']
@@ -265,7 +275,7 @@ class Telegram:
         method: str,
         request_data: Optional[Union[RequestData, dict]] = None,
         **kwargs
-    ) -> dict:
+    ) -> Tuple[int, dict]:
 
         url = f"{cls.api_url}{cls.token}/{method}"
         _method = "GET" if request_data is None else "POST"
@@ -291,7 +301,7 @@ class Telegram:
         cls,
         method: str,
         **kwargs
-    ) -> dict:
+    ) -> Union[bool, dict]:
         return await cls.is_ok(
             await cls.__method(
                 method,
@@ -300,27 +310,79 @@ class Telegram:
         )
 
     @classmethod
-    async def __call__(cls, method: "telegram.Types.DefaultMethod") -> dict:
+    async def __call__(
+        cls,
+        method: "telegram.Types.DefaultMethod"
+    ) -> telegram.Types.DefaultMethod:
         _method, args = method._call()
         method._called = True
         method._res = await cls.call_method(_method, **args)
         return method
 
 
+class _Bot:
+    event_handlers = {}
+
+    @classmethod
+    def set_event_handler(cls, event, func):
+        cls.event_handlers[event] = func
+
+    @classmethod
+    async def start(cls, offset=0):
+        TeleLib.logger("Starting TeleLib Bot Instance")
+
+        while TeleLib.is_running:
+            await asyncio.sleep(0.01)
+            await TeleLib.tg(updates := getUpdates(
+                offset=telegram.Integer(offset))
+            )
+
+            def _(update):
+                for event, event_func in cls.event_handlers.items():
+                    for update_type in Telegram.update_types:
+                        if type(getattr(update, update_type)) == event:
+                            try:
+                                ThreadPy.create_and_start_thread(
+                                    name=f"{update.update_id}-T",
+                                    target=TeleLib.AsyncRun,
+                                    args=(
+                                        event_func,
+                                        getattr(update, update_type)
+                                    )
+                                )
+                            except Exception as err:
+                                print(err)
+
+                            return True
+
+            for update in updates.result():
+                offset = update.update_id + 1
+                _(update)
+
+                if 'main' in cls.event_handlers:
+                    ThreadPy.create_and_start_thread(
+                        name=f"{update.update_id}-T",
+                        target=TeleLib.AsyncRun,
+                        args=(
+                            cls.event_handlers['main'],
+                            update
+                        )
+                    )
+
+
 class TeleLib:
-    Logger = Logger
-    Tools = Tools
-    tg = None
+    Bot = _Bot()
+    Tools = _Tools()
+    logger = Logger()
+    _thread = ThreadPy()
+    tg: Telegram = None  # type: ignore
 
-    _thread = None
-    token = None
+    token: str = None  # type: ignore
     api_url = "https://api.telegram.org/bot"
-    _event_loop = None
-    _instance = None
+    _event_loop: asyncio.AbstractEventLoop = None  # type: ignore
+    _instance: "TeleLib" = None  # type: ignore
 
-    debug = False
-    logger = None
-    tg = None
+    debug = True
     is_running = True
 
     def __repr__(self) -> str:
@@ -338,12 +400,10 @@ class TeleLib:
         if api_url is not None:
             TeleLib.api_url = api_url
 
-        TeleLib._thread = ThreadPy()
         TeleLib.debug = debug
 
         TeleLib._event_loop = asyncio.new_event_loop()
         TeleLib._event_loop.set_debug(TeleLib.debug)
-        TeleLib.logger = self.Logger()
         TeleLib.tg = Telegram(TeleLib.token, TeleLib.api_url)
 
     @property
@@ -353,7 +413,12 @@ class TeleLib:
         return self._event_loop
 
     @classmethod
-    def AsyncRun(cls, func, *args, **kwargs):
+    def AsyncRun(
+        cls,
+        func: Callable[[Any], Coroutine[Any, Any, Any]],
+        *args,
+        **kwargs
+    ) -> Any:
         async def runner():
             await func(*args, **kwargs)
 
@@ -361,55 +426,6 @@ class TeleLib:
             runner(),
             cls._event_loop
         )
-
-    class Bot:
-        event_handlers = {}
-
-        @classmethod
-        def set_event_handler(cls, event, func):
-            cls.event_handlers[event] = func
-
-        @classmethod
-        async def start(cls, offset=0):
-            TeleLib.logger("Starting TeleLib Bot Instance")
-
-            while TeleLib.is_running:
-                await asyncio.sleep(0.01)
-                await TeleLib.tg(updates := getUpdates(offset=offset))
-
-                def _(update):
-                    for event, event_func in cls.event_handlers.items():
-                        for update_type in Telegram.update_types:
-                            if type(getattr(update, update_type)) == event:
-                                try:
-                                    ThreadPy.create_and_start_thread(
-                                        name=f"{update.update_id}-Thread",
-                                        target=TeleLib.AsyncRun,
-                                        args=(
-                                            event_func,
-                                            getattr(update, update_type)
-                                        )
-                                    )
-                                except Exception as err:
-                                    print(err)
-
-                                return True
-
-                for update in updates.result():
-                    offset = update.update_id + 1
-                    _(update)
-
-                    if 'main' in cls.event_handlers:
-                        ThreadPy.create_and_start_thread(
-                            name=f"{update.update_id}-Thread",
-                            target=TeleLib.AsyncRun,
-                            args=(
-                                cls.event_handlers['main'],
-                                update
-                            )
-                        )
-
-    # Extra Python Tools
 
     def start(self):
         TeleLib.logger("Starting TeleLib")

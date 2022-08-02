@@ -12,6 +12,7 @@ if __name__ == "__main__":
         ...
 
     async def message(msg: telegram.Message):
+        print(msg)
         if msg.text == "hello":
             await TeleLib.tg(
                 res := telegram.sendMessage(
