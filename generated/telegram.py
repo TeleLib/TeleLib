@@ -24,6 +24,9 @@ class Types:
     class DefaultMethod:
         def __init__(self, *args, **kwargs):
             self._called = False
+            self._method: str = ""
+            self._args = {}
+            self._res = None
 
         def _call(self):
             return (self._method, self._args)
@@ -459,6 +462,15 @@ class Chat(Types.DefaultType):
     ) -> Optional["Boolean"]:
         return Types.Typify(
             self._d.get("has_private_forwards", None),
+            Boolean
+        )
+
+    @property
+    def has_restricted_voice_and_video_messages(
+        self
+    ) -> Optional["Boolean"]:
+        return Types.Typify(
+            self._d.get("has_restricted_voice_and_video_messages", None),
             Boolean
         )
 
@@ -1179,6 +1191,15 @@ class MessageEntity(Types.DefaultType):
     ) -> Optional["String"]:
         return Types.Typify(
             self._d.get("language", None),
+            String
+        )
+
+    @property
+    def custom_emoji_id(
+        self
+    ) -> Optional["String"]:
+        return Types.Typify(
+            self._d.get("custom_emoji_id", None),
             String
         )
 
@@ -3982,6 +4003,15 @@ class Sticker(Types.DefaultType):
         )
 
     @property
+    def type(
+        self
+    ) -> "String":
+        return Types.Typify(
+            self._d.get("type", None),
+            String
+        )
+
+    @property
     def width(
         self
     ) -> "Integer":
@@ -4063,6 +4093,15 @@ class Sticker(Types.DefaultType):
         )
 
     @property
+    def custom_emoji_id(
+        self
+    ) -> Optional["String"]:
+        return Types.Typify(
+            self._d.get("custom_emoji_id", None),
+            String
+        )
+
+    @property
     def file_size(
         self
     ) -> Optional["Integer"]:
@@ -4093,6 +4132,15 @@ class StickerSet(Types.DefaultType):
         )
 
     @property
+    def sticker_type(
+        self
+    ) -> "String":
+        return Types.Typify(
+            self._d.get("sticker_type", None),
+            String
+        )
+
+    @property
     def is_animated(
         self
     ) -> "Boolean":
@@ -4107,15 +4155,6 @@ class StickerSet(Types.DefaultType):
     ) -> "Boolean":
         return Types.Typify(
             self._d.get("is_video", None),
-            Boolean
-        )
-
-    @property
-    def contains_masks(
-        self
-    ) -> "Boolean":
-        return Types.Typify(
-            self._d.get("contains_masks", None),
             Boolean
         )
 
@@ -10036,6 +10075,27 @@ class getStickerSet(Types.DefaultMethod):
         return Types.Typify(self._res, update_type)
 
 
+class getCustomEmojiStickers(Types.DefaultMethod):
+
+    def __init__(
+        self,
+        custom_emoji_ids: "List[String]",
+    ):
+        super().__init__(
+            custom_emoji_ids
+        )
+        self._method = "getCustomEmojiStickers"
+        self._res_type = "List[Sticker]"
+        self._args = {}
+        self._args['custom_emoji_ids'] = custom_emoji_ids
+
+    def result(self, update_type=Sticker) -> "List[Sticker]":
+        if not self._called:
+            raise Exception("You have to call the method first")
+
+        return Types.Typify(self._res, update_type)
+
+
 class uploadStickerFile(Types.DefaultMethod):
 
     def __init__(
@@ -10071,7 +10131,7 @@ class createNewStickerSet(Types.DefaultMethod):
                 png_sticker: Optional[Union["InputFile", "String"]] = None,
                 tgs_sticker: Optional["InputFile"] = None,
                 webm_sticker: Optional["InputFile"] = None,
-                contains_masks: Optional["Boolean"] = None,
+                sticker_type: Optional["String"] = None,
                 mask_position: Optional["MaskPosition"] = None,
     ):
         super().__init__(
@@ -10081,8 +10141,8 @@ class createNewStickerSet(Types.DefaultMethod):
             png_sticker,
             tgs_sticker,
             webm_sticker,
+            sticker_type,
             emojis,
-            contains_masks,
             mask_position
         )
         self._method = "createNewStickerSet"
@@ -10094,8 +10154,8 @@ class createNewStickerSet(Types.DefaultMethod):
         self._args['png_sticker'] = png_sticker
         self._args['tgs_sticker'] = tgs_sticker
         self._args['webm_sticker'] = webm_sticker
+        self._args['sticker_type'] = sticker_type
         self._args['emojis'] = emojis
-        self._args['contains_masks'] = contains_masks
         self._args['mask_position'] = mask_position
 
     def result(self, update_type=Boolean) -> "Boolean":

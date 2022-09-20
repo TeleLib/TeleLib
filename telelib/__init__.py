@@ -1,8 +1,9 @@
+from ast import Bytes
 import os
 if os.path.exists('VERSION'):
     __VERSION__ = open('VERSION').read().strip()
 else:
-    __VERSION__ = "6.0.010"
+    __VERSION__ = "6.2.0"
 
 __all__ = (
     '__VERSION__',
@@ -176,6 +177,10 @@ class Telegram:
             for key, value in self.json_parameters.copy().items():
                 if value is None:
                     del self.json_parameters[key]
+                if isinstance(value, Bytes):
+                    self.multipart_data[key] = self.json_parameters[key]
+                    del self.json_parameters[key]
+
             for key, value in self.multipart_data.copy().items():
                 if value is None:
                     del self.multipart_data[key]
