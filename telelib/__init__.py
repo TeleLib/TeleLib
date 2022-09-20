@@ -1,9 +1,8 @@
-from ast import Bytes
 import os
 if os.path.exists('VERSION'):
     __VERSION__ = open('VERSION').read().strip()
 else:
-    __VERSION__ = "6.2.0"
+    __VERSION__ = "6.2.1"
 
 __all__ = (
     '__VERSION__',
@@ -57,7 +56,7 @@ except ImportError:
 
 from telelib.tools.code_generator import CodeGenerator
 from telelib.tools.scraper import Scraper
-from telelib.telegram import getUpdates
+from telelib.telegram import InputFile, getUpdates
 import telelib.telegram as _telegram
 
 main_path = os.path.realpath(
@@ -177,7 +176,7 @@ class Telegram:
             for key, value in self.json_parameters.copy().items():
                 if value is None:
                     del self.json_parameters[key]
-                if isinstance(value, Bytes):
+                if isinstance(value, bytes) or isinstance(value, InputFile):
                     self.multipart_data[key] = self.json_parameters[key]
                     del self.json_parameters[key]
 
