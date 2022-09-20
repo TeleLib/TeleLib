@@ -2,7 +2,7 @@ import os
 if os.path.exists('VERSION'):
     __VERSION__ = open('VERSION').read().strip()
 else:
-    __VERSION__ = "6.2.1"
+    __VERSION__ = "6.2.2"
 
 __all__ = (
     '__VERSION__',
@@ -173,13 +173,17 @@ class Telegram:
         def __init__(self, params, files={}):
             self.multipart_data = files
             self.json_parameters = params
+            isFile = False
             for key, value in self.json_parameters.copy().items():
                 if value is None:
                     del self.json_parameters[key]
                 if isinstance(value, bytes) or isinstance(value, InputFile):
-                    self.multipart_data[key] = self.json_parameters[key]
+                    self.multipart_data = self.json_parameters
                     del self.json_parameters[key]
+                    isFile = True
 
+            if isFile:
+                self.json_parameters = {}
             for key, value in self.multipart_data.copy().items():
                 if value is None:
                     del self.multipart_data[key]
