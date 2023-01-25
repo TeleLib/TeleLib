@@ -43,6 +43,11 @@ don't forget to follow our [contribution rules](/CONTRIBUTING.md)
 
 ----
 
+## known bugs
+
+- fix workflow to publish codes to pypi.
+- fix workflow to publish codes on npm.
+
 ## todo list
 
 - [x] Write Code that write code for methods and types.
