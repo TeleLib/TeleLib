@@ -3,7 +3,7 @@ import os
 if os.path.exists('VERSION'):
     __VERSION__ = open('VERSION').read().strip()
 else:
-    __VERSION__ = "6.2.3"
+    __VERSION__ = "6.2.5"
 
 __all__ = (
     '__VERSION__',
